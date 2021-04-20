@@ -31,7 +31,9 @@ objets = []
 ######################
 # Fonction
 
-
+### pendant le menu principal<
+pseudo= 'pseudo'
+score= 'score '
 
 
 #créer la génération du terrain, du mur du snake et de la pomme avec des chiffres pour l'utiliser avec une matrice
@@ -57,6 +59,10 @@ def affichage():
             elif carte[j][i] == 3:
                 tete = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="springgreen4",outline="springgreen4")
                 objets.append(tete)
+
+def postgame():
+    """ return au menu du début"""
+
 
 
 def gameover():
