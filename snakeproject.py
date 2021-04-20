@@ -9,6 +9,7 @@ x, y = WIDTH / carre, HEIGHT / carre
 
 direct = "none"
 vitesse = 100
+jouable = 'True'
 
 carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
          [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -64,48 +65,50 @@ def snake():
 
 def mouvement(*args):
     global direct
-    if direct == "haut":
-        for i in range(len(carte)):
-            for j in range(len(carte[0])):
-                if carte[j][i] == 3:
-                    temp1, temp2 = i, j
-        if carte[temp2 - 1][temp1] == 1:
-            racine.destroy()
-        carte[temp2][temp1] = 0
-        carte[temp2-1][temp1] = 3
+    global jouable
+    if jouable == 'True':
+        if direct == "haut":
+            for i in range(len(carte)):
+                for j in range(len(carte[0])):
+                    if carte[j][i] == 3:
+                        temp1, temp2 = i, j
+            if carte[temp2 - 1][temp1] == 1:
+                jouable = 'False'
+            carte[temp2][temp1] = 0
+            carte[temp2-1][temp1] = 3
 
-    if direct == "bas":
-        for i in range(len(carte)):
-            for j in range(len(carte[0])):
-                if carte[j][i] == 3:
-                    temp1, temp2 = i, j
-        if carte[temp2 + 1][temp1] == 1:
-            racine.destroy()
-        carte[temp2][temp1] = 0
-        carte[temp2+1][temp1] = 3
+        if direct == "bas":
+            for i in range(len(carte)):
+                for j in range(len(carte[0])):
+                    if carte[j][i] == 3:
+                        temp1, temp2 = i, j
+            if carte[temp2 + 1][temp1] == 1:
+                jouable = 'False'
+            carte[temp2][temp1] = 0
+            carte[temp2+1][temp1] = 3
 
-    if direct == "gauche":
-        for i in range(len(carte)):
-            for j in range(len(carte[0])):
-                if carte[j][i] == 3:
-                    temp1, temp2 = i, j
-        if carte[temp2][temp1 - 1] == 1:
-            racine.destroy()
-        carte[temp2][temp1] = 0
-        carte[temp2][temp1-1] = 3
+        if direct == "gauche":
+            for i in range(len(carte)):
+                for j in range(len(carte[0])):
+                    if carte[j][i] == 3:
+                        temp1, temp2 = i, j
+            if carte[temp2][temp1 - 1] == 1:
+                jouable = 'False'
+            carte[temp2][temp1] = 0
+            carte[temp2][temp1-1] = 3
 
-    if direct == "droite":
-        for i in range(len(carte)):
-            for j in range(len(carte[0])):
-                if carte[j][i] == 3:
-                    temp1, temp2 = i, j
-        if carte[temp2][temp1 + 1] == 1:
-            racine.destroy()
-        carte[temp2][temp1] = 0
-        carte[temp2][temp1+1] = 3
-    affichage()
-    print(direct)
-    racine.after(vitesse,mouvement)
+        if direct == "droite":
+            for i in range(len(carte)):
+                for j in range(len(carte[0])):
+                    if carte[j][i] == 3:
+                        temp1, temp2 = i, j
+            if carte[temp2][temp1 + 1] == 1:
+                jouable= 'False'
+            carte[temp2][temp1] = 0
+            carte[temp2][temp1+1] = 3
+        affichage()
+        print(direct)
+        racine.after(vitesse,mouvement)
 
 
 def haut(*args):
