@@ -1,9 +1,28 @@
+############################################
+# groupe BI 2
+# Olivier COTTIN
+# Clément LUKACS
+# Lara ESPINASSE   
+# Gabriel HAMOUCH
+# Hugo NAZAC
+# https://github.com/uvsq22000753/Snake.git
+#############################################
+
+######################
+# Import des librairie
+
 import tkinter as tk
 from random import randint
+
+######################
+# CONSTANTES
 
 WIDTH = 500
 HEIGHT = 500
 carre = 11
+
+######################
+# Variables globale
 
 x, y = WIDTH / carre, HEIGHT / carre
 
@@ -25,6 +44,8 @@ carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
 objets = []
 
+######################
+# Fonction
 
 def affichage():
     global objets
@@ -127,17 +148,28 @@ def droite(*args):
     global direct
     direct = "droite"
 
+######################
+# Programme principal
 
 racine = tk.Tk()
 
 racine.title("project snake")
 
+#######################
+# Création des widgets
+
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
 canvas.grid()
+
+#######################
+# Appel des fonctions
+
 affichage()
 generation_pomme()
 snake()
 mouvement()
+
+
 racine.bind("<Up>",haut)
 racine.bind("<Down>",bas)
 racine.bind("<Left>",gauche)
