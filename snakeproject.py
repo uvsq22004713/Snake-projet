@@ -1,13 +1,31 @@
+############################################
+# groupe BI 2
+# Olivier COTTIN
+# Clément LUKACS
+# Lara ESPINASSE   
+# Gabriel HAMOUCH
+# Hugo NAZAC
+# https://github.com/uvsq22000753/Snake.git
+#############################################
+
+######################
+# Import des librairie
+
 import tkinter as tk
 from random import randint
 from tkinter.messagebox import *
 
+######################
+# CONSTANTES
 
 WIDTH = 500
 HEIGHT = 500
 carre = 11
 
 x, y = WIDTH / carre, HEIGHT / carre
+
+######################
+# Variables globale
 
 direct = "none"
 vitesse = 100
@@ -36,8 +54,9 @@ pseudo= 'pseudo'
 score= -1
 
 
-#créer la génération du terrain, du mur du snake et de la pomme avec des chiffres pour l'utiliser avec une matrice
 def affichage():
+    """créer la génération du terrain, du mur du snake et 
+       de la pomme avec des chiffres pour l'utiliser avec une matrice"""
     global objets
     if len(objets) != 0:
         for elem in objets:
@@ -62,7 +81,7 @@ def affichage():
 
 def postgame():
     """ return au menu du début"""
-
+    pass
 
 
 def gameover():
@@ -75,19 +94,22 @@ def generation_pomme():
     """génère la pomme de manière aléatoire"""
     global score
     score += 1
+    #scoreaff.config(text= "Score :" + str(score))
     alun = randint(1, 9)
     aldeux = randint(1, 9)
     carte[alun][aldeux] = 2
     affichage()
 
 def snake():
-    """génère le snake"""
+    """génère le serpent"""
     carte[7][6] = 3
     affichage()
 
 
 def mouvement(*args):
-    """ déplace le snake, arrêtes la partie si touche un mur,  ou lui même"""
+    """ déplace le serpent,
+        arrêtes la partie si touche un mur,
+        ou lui même"""
     global direct
     global jouable
     if jouable == True:
@@ -141,7 +163,7 @@ def mouvement(*args):
         pass
     
 
-#### fonctions servant a relier mouvement et les canvas.bind
+"""fonctions servant a relier mouvement et les canvas.bind"""
 def haut(*args):
     global direct
     direct = "haut"
@@ -161,22 +183,37 @@ def droite(*args):
     global direct
     direct = "droite"
 
-#    fenetre graphique
-racine = tk.Tk()
+######################
+# Programme principal
 
+racine = tk.Tk()
 racine.title("project snake")
 
+######################
+# Création des widgets
+
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
-canvas.grid(column=1, row= 2, columnspan=2)
 label= tk.Label(racine, text= pseudo)
+scoreaff = tk.Label(racine, text= "score" + str(score))
+
+#####################
+# Placement des widgets
+
+canvas.grid(column=1, row= 2, columnspan=2)
 label.grid(column=1, row= 1)
-scoreaff = tk.Label(racine, text= score)
 scoreaff.grid(column=2, row= 1)
+
+#####################
+# Appel des fonctions
 
 generation_pomme()
 affichage()
 snake()
 mouvement()
+
+#####################
+# Liaison des évènements
+
 racine.bind("<Up>",haut)
 racine.bind("<Down>",bas)
 racine.bind("<Left>",gauche)
