@@ -1,6 +1,6 @@
 import tkinter as tk
 from random import randint
-from tkinter.messagebox import * 
+from tkinter.messagebox import *
 
 
 WIDTH = 500
@@ -33,7 +33,7 @@ objets = []
 
 ### pendant le menu principal<
 pseudo= 'pseudo'
-score= 'score '
+score= -1
 
 
 #créer la génération du terrain, du mur du snake et de la pomme avec des chiffres pour l'utiliser avec une matrice
@@ -73,11 +73,12 @@ def gameover():
 
 def generation_pomme():
     """génère la pomme de manière aléatoire"""
+    global score
+    score += 1
     alun = randint(1, 9)
     aldeux = randint(1, 9)
     carte[alun][aldeux] = 2
     affichage()
-
 
 def snake():
     """génère le snake"""
@@ -172,8 +173,8 @@ label.grid(column=1, row= 1)
 scoreaff = tk.Label(racine, text= score)
 scoreaff.grid(column=2, row= 1)
 
-affichage()
 generation_pomme()
+affichage()
 snake()
 mouvement()
 racine.bind("<Up>",haut)
