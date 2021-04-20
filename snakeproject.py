@@ -58,24 +58,29 @@ def affichage():
                 tete = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="springgreen4",outline="springgreen4")
                 objets.append(tete)
 
+
 def gameover():
+    """termine la partie"""
     tk.messagebox.showinfo(title='Game Over', message='Game Over')
+    postgame()
 
 
-#genere la pomme dans un endroit au hasard de la matrice
 def generation_pomme():
+    """génère la pomme de manière aléatoire"""
     alun = randint(1, 9)
     aldeux = randint(1, 9)
     carte[alun][aldeux] = 2
     affichage()
 
-#genere le snake
+
 def snake():
+    """génère le snake"""
     carte[7][6] = 3
     affichage()
 
-#fait bouger le snake dans les directions
+
 def mouvement(*args):
+    """ déplace le snake, arrêtes la partie si touche un mur,  ou lui même"""
     global direct
     global jouable
     if jouable == True:
@@ -129,7 +134,7 @@ def mouvement(*args):
         pass
     
 
-# fonctions servant a relier mouvement et les canvas.bind"""
+#### fonctions servant a relier mouvement et les canvas.bind
 def haut(*args):
     global direct
     direct = "haut"
@@ -149,13 +154,18 @@ def droite(*args):
     global direct
     direct = "droite"
 
-#    fenetre graphique"""
+#    fenetre graphique
 racine = tk.Tk()
 
 racine.title("project snake")
 
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
-canvas.grid()
+canvas.grid(column=1, row= 2, columnspan=2)
+label= tk.Label(racine, text= pseudo)
+label.grid(column=1, row= 1)
+scoreaff = tk.Label(racine, text= score)
+scoreaff.grid(column=2, row= 1)
+
 affichage()
 generation_pomme()
 snake()
