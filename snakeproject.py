@@ -1,34 +1,14 @@
-############################################
-# groupe BI 2
-# Olivier COTTIN
-# Clément LUKACS
-# Lara ESPINASSE   
-# Gabriel HAMOUCH
-# Hugo NAZAC
-# https://github.com/uvsq22000753/Snake.git
-#############################################
-
-######################
-# Import des librairie
-
 import tkinter as tk
 from random import randint
-
-######################
-# CONSTANTES
 
 WIDTH = 500
 HEIGHT = 500
 carre = 11
 
-######################
-# Variables globale
-
 x, y = WIDTH / carre, HEIGHT / carre
 
 direct = "none"
 vitesse = 100
-jouable = 'True'
 
 carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
          [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -45,9 +25,7 @@ carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
 objets = []
 
-######################
-# Fonction
-
+#créer la génération du terrain, du mur du snake et de la pomme avec des chiffres pour l'utiliser avec une matrice
 def affichage():
     global objets
     if len(objets) != 0:
@@ -72,66 +50,65 @@ def affichage():
                 objets.append(tete)
 
 
+#genere la pomme dans un endroit au hasard de la matrice
 def generation_pomme():
     alun = randint(1, 9)
     aldeux = randint(1, 9)
     carte[alun][aldeux] = 2
     affichage()
 
-
+#genere le snake
 def snake():
     carte[7][6] = 3
     affichage()
 
-
+#fait bouger le snake dans les directions
 def mouvement(*args):
     global direct
-    global jouable
-    if jouable == 'True':
-        if direct == "haut":
-            for i in range(len(carte)):
-                for j in range(len(carte[0])):
-                    if carte[j][i] == 3:
-                        temp1, temp2 = i, j
-            if carte[temp2 - 1][temp1] == 1:
-                jouable = 'False'
-            carte[temp2][temp1] = 0
-            carte[temp2-1][temp1] = 3
+    if direct == "haut":
+        for i in range(len(carte)):
+            for j in range(len(carte[0])):
+                if carte[j][i] == 3:
+                    temp1, temp2 = i, j
+        if carte[temp2 - 1][temp1] == 1:
+            racine.destroy()
+        carte[temp2][temp1] = 0
+        carte[temp2-1][temp1] = 3
 
-        if direct == "bas":
-            for i in range(len(carte)):
-                for j in range(len(carte[0])):
-                    if carte[j][i] == 3:
-                        temp1, temp2 = i, j
-            if carte[temp2 + 1][temp1] == 1:
-                jouable = 'False'
-            carte[temp2][temp1] = 0
-            carte[temp2+1][temp1] = 3
+    if direct == "bas":
+        for i in range(len(carte)):
+            for j in range(len(carte[0])):
+                if carte[j][i] == 3:
+                    temp1, temp2 = i, j
+        if carte[temp2 + 1][temp1] == 1:
+            racine.destroy()
+        carte[temp2][temp1] = 0
+        carte[temp2+1][temp1] = 3
 
-        if direct == "gauche":
-            for i in range(len(carte)):
-                for j in range(len(carte[0])):
-                    if carte[j][i] == 3:
-                        temp1, temp2 = i, j
-            if carte[temp2][temp1 - 1] == 1:
-                jouable = 'False'
-            carte[temp2][temp1] = 0
-            carte[temp2][temp1-1] = 3
+    if direct == "gauche":
+        for i in range(len(carte)):
+            for j in range(len(carte[0])):
+                if carte[j][i] == 3:
+                    temp1, temp2 = i, j
+        if carte[temp2][temp1 - 1] == 1:
+            racine.destroy()
+        carte[temp2][temp1] = 0
+        carte[temp2][temp1-1] = 3
 
-        if direct == "droite":
-            for i in range(len(carte)):
-                for j in range(len(carte[0])):
-                    if carte[j][i] == 3:
-                        temp1, temp2 = i, j
-            if carte[temp2][temp1 + 1] == 1:
-                jouable= 'False'
-            carte[temp2][temp1] = 0
-            carte[temp2][temp1+1] = 3
-        affichage()
-        print(direct)
-        racine.after(vitesse,mouvement)
+    if direct == "droite":
+        for i in range(len(carte)):
+            for j in range(len(carte[0])):
+                if carte[j][i] == 3:
+                    temp1, temp2 = i, j
+        if carte[temp2][temp1 + 1] == 1:
+            racine.destroy()
+        carte[temp2][temp1] = 0
+        carte[temp2][temp1+1] = 3
+    affichage()
+    print(direct)
+    racine.after(vitesse,mouvement)
 
-
+                    """ fonctions servant a relier mouvement et les canvas.bind"""
 def haut(*args):
     global direct
     direct = "haut"
@@ -151,28 +128,18 @@ def droite(*args):
     global direct
     direct = "droite"
 
-######################
-# Programme principal
 
+            """"fenetre graphique"""
 racine = tk.Tk()
 
 racine.title("project snake")
 
-#######################
-# Création des widgets
-
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
 canvas.grid()
-
-#######################
-# Appel des fonctions
-
 affichage()
 generation_pomme()
 snake()
 mouvement()
-
-
 racine.bind("<Up>",haut)
 racine.bind("<Down>",bas)
 racine.bind("<Left>",gauche)
