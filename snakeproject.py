@@ -13,6 +13,8 @@
 
 import tkinter as tk
 from random import randint
+from tkinter.messagebox import * 
+
 
 ######################
 # CONSTANTES
@@ -48,6 +50,9 @@ objets = []
 ######################
 # Fonction
 
+
+
+
 def affichage():
     global objets
     if len(objets) != 0:
@@ -70,6 +75,9 @@ def affichage():
             elif carte[j][i] == 3:
                 tete = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="springgreen4",outline="springgreen4")
                 objets.append(tete)
+
+def gameover():
+    tk.messagebox.showinfo(title='Game Over', message='Game Over')
 
 
 def generation_pomme():
@@ -95,6 +103,7 @@ def mouvement(*args):
                         temp1, temp2 = i, j
             if carte[temp2 - 1][temp1] == 1:
                 jouable = 'False'
+                gameover()
             carte[temp2][temp1] = 0
             carte[temp2-1][temp1] = 3
 
@@ -105,6 +114,7 @@ def mouvement(*args):
                         temp1, temp2 = i, j
             if carte[temp2 + 1][temp1] == 1:
                 jouable = 'False'
+                gameover()
             carte[temp2][temp1] = 0
             carte[temp2+1][temp1] = 3
 
@@ -115,6 +125,7 @@ def mouvement(*args):
                         temp1, temp2 = i, j
             if carte[temp2][temp1 - 1] == 1:
                 jouable = 'False'
+                gameover()
             carte[temp2][temp1] = 0
             carte[temp2][temp1-1] = 3
 
@@ -125,12 +136,14 @@ def mouvement(*args):
                         temp1, temp2 = i, j
             if carte[temp2][temp1 + 1] == 1:
                 jouable= 'False'
+                gameover()
             carte[temp2][temp1] = 0
             carte[temp2][temp1+1] = 3
         affichage()
         print(direct)
         racine.after(vitesse,mouvement)
-
+    else: 
+        pass
 
 def haut(*args):
     global direct
