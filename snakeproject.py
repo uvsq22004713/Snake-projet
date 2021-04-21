@@ -1,12 +1,12 @@
-############################################
+#################################################
 # groupe BI 2
 # Olivier COTTIN
 # Clément LUKACS
 # Lara ESPINASSE   
 # Gabriel HAMOUCH
 # Hugo NAZAC
-# https://github.com/uvsq22000753/Snake.git
-#############################################
+# https://github.com/uvsq22004713/Snake-projet.git
+##################################################
 
 ######################
 # Import des librairie
