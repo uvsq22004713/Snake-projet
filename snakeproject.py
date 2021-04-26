@@ -46,14 +46,18 @@ serpent = []
 
 objets = []
 
+racine = tk.Tk()
+racine.title("project snake")
+racine_init = tk.Tk()
+racine_init.title("Projet snake")
 
 ######################
-# Fonction
-
-### pendant le menu principal<
+#Fonctions de l'écran principal
 pseudo= 'pseudo'
 score= 0
+bvn= tk.Label (racine_init, text= 'Bienvenue sur Snake')
 
+####FONCTIONS DU JEU
 
 
 def affichage():
@@ -155,7 +159,7 @@ def mouvement():
     affichage()
     racine.after(vitesse, mouvement)
 
-
+###Fonctions relatives aux changements de directions#############
 def haut(*args):
     global direct
     direct = "haut"
@@ -176,8 +180,6 @@ def droite(*args):
     direct = "droite"
 
 
-racine = tk.Tk()
-racine.title("project snake")
 
 ######################
 # Création des widgets
