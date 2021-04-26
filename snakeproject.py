@@ -22,8 +22,10 @@ from tkinter.messagebox import *
 WIDTH = 500
 HEIGHT = 500
 carre = 11
-
 x, y = WIDTH / carre, HEIGHT / carre
+
+#######################
+# Variables globals
 
 direct = None
 vitesse = 300
@@ -47,14 +49,12 @@ serpent = []
 objets = []
 
 
-######################
-# Fonction
-
 ### pendant le menu principal<
 pseudo= 'pseudo'
 score= 0
 
-
+######################
+# Fonction
 
 def affichage():
     """créer la génération du terrain, du mur du snake et 
@@ -175,6 +175,8 @@ def droite(*args):
     global direct
     direct = "droite"
 
+######################
+# Programme principal
 
 racine = tk.Tk()
 racine.title("project snake")
@@ -186,23 +188,28 @@ canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
 label= tk.Label(racine, text= pseudo)
 scoreaff = tk.Label(racine, text= "Score = " + str(score))
 
-#####################
+#######################
 # Placement des widgets
 
 canvas.grid(column=1, row= 2, columnspan=2)
 label.grid(column=1, row= 1)
 scoreaff.grid(column=2, row= 1)
 
-
-
+######################
+# Appel fonctions
 
 affichage()
 generation_pomme()
 snake()
 mouvement()
+
+########################
+# Liaison des événements
+
 racine.bind("<Up>", haut)
 racine.bind("<Down>", bas)
 racine.bind("<Left>", gauche)
 racine.bind("<Right>", droite)
 racine.resizable(False, False)
+
 racine.mainloop()
