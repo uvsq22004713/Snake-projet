@@ -195,7 +195,7 @@ label.grid(column=1, row= 1)
 scoreaff.grid(column=2, row= 1)
 
 ######################
-# Appel fonctions
+# Appel  de fonctions
 
 affichage()
 generation_pomme()
