@@ -48,7 +48,6 @@ serpent = []
 
 objets = []
 
-
 ### pendant le menu principal<
 pseudo= 'pseudo'
 score= 0
