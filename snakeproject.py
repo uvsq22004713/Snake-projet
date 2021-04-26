@@ -1,7 +1,22 @@
+#################################################
+# groupe BI 2
+# Olivier COTTIN
+# Clément LUKACS
+# Lara ESPINASSE   
+# Gabriel HAMOUCH
+# Hugo NAZAC
+# https://github.com/uvsq22004713/Snake-projet.git
+##################################################
+
+######################
+# Import des librairie
+
 import tkinter as tk
 from random import randint
 from tkinter.messagebox import *
 
+######################
+# CONSTANTES
 
 
 WIDTH = 500
@@ -42,6 +57,8 @@ score= 0
 
 
 def affichage():
+    """créer la génération du terrain, du mur du snake et 
+       de la pomme avec des chiffres pour l'utiliser avec une matrice"""
     global objets
     if len(objets) != 0:
         for elem in objets:
@@ -129,7 +146,7 @@ def mouvement():
         move_snake(snake_x, snake_y)
         generation_pomme()
         score += 1
-        scoreaff.config(text= score)
+        scoreaff.config(text= 'Score = ' + str(score))
     else:
         move_snake(snake_x, snake_y)
         (last_x, last_y) = serpent.pop()
@@ -160,14 +177,20 @@ def droite(*args):
 
 
 racine = tk.Tk()
-
 racine.title("project snake")
 
+######################
+# Création des widgets
+
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
-canvas.grid(column=1, row= 2, columnspan=2)
 label= tk.Label(racine, text= pseudo)
+scoreaff = tk.Label(racine, text= "Score = " + str(score))
+
+#####################
+# Placement des widgets
+
+canvas.grid(column=1, row= 2, columnspan=2)
 label.grid(column=1, row= 1)
-scoreaff = tk.Label(racine, text= score)
 scoreaff.grid(column=2, row= 1)
 
 
