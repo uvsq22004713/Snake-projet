@@ -52,6 +52,7 @@ objets = []
 pseudo= 'pseudo'
 score= 0
 
+
 ######################
 # Fonction
 
