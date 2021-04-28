@@ -52,7 +52,7 @@ racine = tk.Tk()
 racine.title("project snake")
 
 ######################
-#Fonctions de l'écran principal
+#Variables de l'écran principal
 score= 0
 pseudo= tk.StringVar()
 
