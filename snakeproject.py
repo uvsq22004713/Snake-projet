@@ -66,10 +66,10 @@ pseudo= tk.StringVar()
 def cartes():
 
     carte_une = []
-    for i in range(50):
+    for i in range(125):
         temp = []
         for j in range(50):
-            if i == 0 or i == 49 or j == 0 or j == 49:
+            if i == 0 or i == 124 or j == 0 or j == 124:
                 temp.append(1)
             else:
                 temp.append(0)
@@ -86,10 +86,10 @@ def cartes():
         carte_deux.append(temp)
 
     carte_trois = []
-    for i in range(200):
+    for i in range(350):
         temp = []
-        for j in range(200):
-            if i == 0 or i == 199 or j == 0 or j == 199:
+        for j in range(350):
+            if i == 0 or i == 349 or j == 0 or j == 349:
                 temp.append(1)
             else:
                 temp.append(0)
