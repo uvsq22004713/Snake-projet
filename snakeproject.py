@@ -63,8 +63,7 @@ pseudo= tk.StringVar()
 # Fonction
 def reset():
     global score, pseudo, carte, objets, serpent, head_snake, direct
-    score=0
-    pseudo.set('')
+    
     carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -82,8 +81,10 @@ def reset():
     serpent = []
     objets = []
     direct = None
-    snake()
 
+
+    score = 0
+    pseudo.set('')
 
     affichage()
     generation_pomme()
@@ -104,9 +105,6 @@ def gameover():
     pseudo_entry.grid()
     btnjouer.grid()
     
-
-
-
 
 def affichage():
     """créer la génération du terrain, du mur du snake et 
