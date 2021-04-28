@@ -43,6 +43,7 @@ carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
          ]
 
+
 head_snake = (0, 0)
 serpent = []
 
@@ -61,6 +62,38 @@ pseudo= tk.StringVar()
 
 ######################
 # Fonction
+
+def cartes():
+    carte_une = []
+    for i in range(50):
+        temp = []
+        for j in range(50):
+            if i == 0 or i == 49 or j == 0 or j == 49:
+                temp.append(1)
+            else:
+                temp.append(0)
+        carte_deux.append(temp)
+
+    carte_deux = []
+    for i in range(500):
+        temp = []
+        for j in range(500):
+            if i == 0 or i == 499 or j == 0 or j == 499:
+                temp.append(1)
+            else:
+                temp.append(0)
+        carte_deux.append(temp)
+
+    carte_trois = []
+    for i in range(200):
+        temp = []
+        for j in range(200):
+            if i == 0 or i == 199 or j == 0 or j == 199:
+                temp.append(1)
+            else:
+                temp.append(0)
+        carte_deux.append(temp)
+
 def reset():
     global score, pseudo, carte, objets, serpent, head_snake, direct
     
