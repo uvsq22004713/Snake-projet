@@ -82,11 +82,19 @@ def reset():
     serpent = []
     objets = []
     direct = None
+    snake()
+
+
+    affichage()
+    generation_pomme()
+    snake()
+    mouvement()
 
 
 def gameover():
     """termine la partie"""
     tk.messagebox.showinfo(title='Game Over', message="Game Over \n vous allez retourner vers l'écran principal")
+    reset()
     canvas.grid_remove()
     label.grid_remove()
     scoreaff.grid_remove()
@@ -95,7 +103,7 @@ def gameover():
     pseudo_label.grid()
     pseudo_entry.grid()
     btnjouer.grid()
-    reset()
+    
 
 
 
