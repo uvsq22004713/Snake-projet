@@ -50,19 +50,55 @@ objets = []
 
 racine = tk.Tk()
 racine.title("project snake")
-racine_init = tk.Tk()
-racine_init.title("Projet snake")
 
 ######################
 #Fonctions de l'écran principal
-pseudo= 'pseudo'
 score= 0
-bvn= tk.Label (racine_init, text= 'Bienvenue sur Snake')
+pseudo= tk.StringVar()
+
 
 ####FONCTIONS DU JEU
 
 ######################
 # Fonction
+def reset():
+    global score, pseudo, carte, objets, serpent, head_snake, direct
+    score=0
+    pseudo.set('')
+    carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+             ]
+
+    head_snake = (0, 0)
+    serpent = []
+    objets = []
+    direct = None
+
+
+def gameover():
+    """termine la partie"""
+    tk.messagebox.showinfo(title='Game Over', message="Game Over \n vous allez retourner vers l'écran principal")
+    canvas.grid_remove()
+    label.grid_remove()
+    scoreaff.grid_remove()
+
+    bvn.grid()
+    pseudo_label.grid()
+    pseudo_entry.grid()
+    btnjouer.grid()
+    reset()
+
+
+
 
 def affichage():
     """créer la génération du terrain, du mur du snake et 
@@ -92,11 +128,6 @@ def affichage():
                 tete = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="springgreen4",
                                                outline="springgreen4")
                 objets.append(tete)
-
-
-def gameover():
-    """termine la partie"""
-    tk.messagebox.showinfo(title='Game Over', message='Game Over')
 
 
 def pomme_detector(pos_x, pos_y):
@@ -187,19 +218,39 @@ def droite(*args):
 # Programme principal
 
 
+#####################
+# Placement des widgets
+def fenjeu():
+        bvn.grid_remove()
+        pseudo_entry.grid_remove()
+        pseudo_label.grid_remove()
+        btnjouer.grid_remove()
+        
+        canvas.grid()
+        label.grid()
+        scoreaff.grid()
+
+
 ######################
 # Création des widgets
+bvn= tk.Label(racine, text='Bienvenue sur Snake')
+bvn.grid(row=1, column=1, columnspan=2)
+pseudo_entry = tk.Entry(racine, textvariable= pseudo)
+pseudo_entry.grid(row=2,column=2)
+pseudo_label= tk.Label(racine, text="Pseudo :")
+pseudo_label.grid(row=2, column=1)
+btnjouer= tk.Button(racine, text='Jouer', command= fenjeu)
+btnjouer.grid(row=3, column=1, columnspan=2)
 
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
-label= tk.Label(racine, text= pseudo)
-scoreaff = tk.Label(racine, text= "Score = " + str(score))
-
-#######################
-# Placement des widgets
-
 canvas.grid(column=1, row= 2, columnspan=2)
+canvas.grid_remove()
+label= tk.Label(racine, textvariable= pseudo)
 label.grid(column=1, row= 1)
+label.grid_remove()
+scoreaff = tk.Label(racine, text= "Score = " + str(score))
 scoreaff.grid(column=2, row= 1)
+scoreaff.grid_remove()
 
 ######################
 # Appel  de fonctions
