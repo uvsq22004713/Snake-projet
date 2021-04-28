@@ -64,6 +64,7 @@ pseudo= tk.StringVar()
 # Fonction
 
 def cartes():
+
     carte_une = []
     for i in range(50):
         temp = []
@@ -72,7 +73,7 @@ def cartes():
                 temp.append(1)
             else:
                 temp.append(0)
-        carte_deux.append(temp)
+        carte_une.append(temp)
 
     carte_deux = []
     for i in range(500):
@@ -92,7 +93,7 @@ def cartes():
                 temp.append(1)
             else:
                 temp.append(0)
-        carte_deux.append(temp)
+        carte_trois.append(temp)
 
 def reset():
     global score, pseudo, carte, objets, serpent, head_snake, direct
