@@ -68,7 +68,7 @@ def cartes():
     carte_une = []
     for i in range(125):
         temp = []
-        for j in range(50):
+        for j in range(125):
             if i == 0 or i == 124 or j == 0 or j == 124:
                 temp.append(1)
             else:
