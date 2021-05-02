@@ -75,26 +75,6 @@ def cartes():
                 temp.append(0)
         carte_une.append(temp)
 
-    carte_deux = []
-    for i in range(500):
-        temp = []
-        for j in range(500):
-            if i == 0 or i == 499 or j == 0 or j == 499:
-                temp.append(1)
-            else:
-                temp.append(0)
-        carte_deux.append(temp)
-
-    carte_trois = []
-    for i in range(350):
-        temp = []
-        for j in range(350):
-            if i == 0 or i == 349 or j == 0 or j == 349:
-                temp.append(1)
-            else:
-                temp.append(0)
-        carte_trois.append(temp)
-
 def reset():
     global score, pseudo, carte, objets, serpent, head_snake, direct
     
