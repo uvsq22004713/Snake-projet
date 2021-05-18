@@ -62,6 +62,9 @@ pseudo= tk.StringVar()
 
 ######################
 # Fonction
+def quitter():
+    """permet de quitter la fenêtre actuelle"""
+    racine.destroy()
 
 def cartes():
 
@@ -251,16 +254,22 @@ def fenjeu():
         scoreaff.grid()
 
 
+
 ######################
 # Création des widgets
-bvn= tk.Label(racine, text='Bienvenue sur Snake')
-bvn.grid(row=1, column=1, columnspan=2)
+bvn= tk.Label(racine, text= "SNAKE", font = ("Times", "30", "italic"), fg= "green")
+bvn.grid(row=1, column=1, columnspan=3)
 pseudo_entry = tk.Entry(racine, textvariable= pseudo)
 pseudo_entry.grid(row=2,column=2)
 pseudo_label= tk.Label(racine, text="Pseudo :")
 pseudo_label.grid(row=2, column=1)
-btnjouer= tk.Button(racine, text='Jouer', command= fenjeu)
-btnjouer.grid(row=3, column=1, columnspan=2)
+btnjouer= tk.Button(racine, text='Go!',width= 15, command= fenjeu)
+btnjouer.grid(row=3, column=2)
+close = tk.Button(racine, text= "Close", command= quitter)
+close.grid(row=3, column=3)
+
+
+
 
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
 canvas.grid(column=1, row= 2, columnspan=2)
