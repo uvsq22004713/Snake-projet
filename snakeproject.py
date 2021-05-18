@@ -15,16 +15,15 @@ import tkinter as tk
 from random import randint
 from tkinter.messagebox import *
 
-######################
+############
 # CONSTANTES
-
 
 WIDTH = 500
 HEIGHT = 500
-carre = 11
-x, y = WIDTH / carre, HEIGHT / carre
+CARRE = 11
+x, y = WIDTH / CARRE, HEIGHT / CARRE
 
-#######################
+###################
 # Variables globals
 
 direct = None
@@ -52,16 +51,13 @@ objets = []
 racine = tk.Tk()
 racine.title("project snake")
 
-######################
-#Variables de l'écran principal
 score= 0
 pseudo= tk.StringVar()
 
 
-####FONCTIONS DU JEU
-
-######################
+##########
 # Fonction
+
 def quitter():
     """permet de quitter la fenêtre actuelle"""
     racine.destroy()
@@ -108,7 +104,6 @@ def reset():
     snake()
     mouvement()
 
-
 def gameover():
     """termine la partie"""
     tk.messagebox.showinfo(title='Game Over', message="Game Over \n vous allez retourner vers l'écran principal")
@@ -122,7 +117,6 @@ def gameover():
     pseudo_entry.grid()
     btnjouer.grid()
     
-
 def affichage():
     """créer la génération du terrain, du mur du snake et 
        de la pomme avec des chiffres pour l'utiliser avec une matrice"""
@@ -152,11 +146,9 @@ def affichage():
                                                outline="springgreen4")
                 objets.append(tete)
 
-
 def pomme_detector(pos_x, pos_y):
     global carte
     return carte[pos_y][pos_x] == 2
-
 
 def generation_pomme():
     global score
@@ -169,7 +161,6 @@ def generation_pomme():
     carte[one][two] = 2
     affichage()
 
-
 def move_snake(head_x, head_y):
     global head_snake, serpent, carte
 
@@ -177,11 +168,9 @@ def move_snake(head_x, head_y):
     serpent.insert(0, head_snake)
     carte[head_y][head_x] = 3
 
-
 def snake():
     move_snake(6, 7)
     affichage()
-
 
 def mouvement():
     global direct, carte, head_snake, serpent, score, scoreaff
@@ -217,33 +206,26 @@ def mouvement():
     affichage()
     racine.after(vitesse, mouvement)
 
-###Fonctions relatives aux changements de directions#############
+##################################################
+#Fonctions relatives aux changements de directions
+
 def haut(*args):
     global direct
     direct = "haut"
-
 
 def bas(*args):
     global direct
     direct = "bas"
 
-
 def gauche(*args):
     global direct
     direct = "gauche"
-
 
 def droite(*args):
     global direct
     direct = "droite"
 
-######################
-# Programme principal
-
-
-#####################
-# Placement des widgets
-def fenjeu():
+def fenetreJeu():
         bvn.grid_remove()
         pseudo_entry.grid_remove()
         pseudo_label.grid_remove()
@@ -253,31 +235,38 @@ def fenjeu():
         label.grid()
         scoreaff.grid()
 
-
-
 ######################
-# Création des widgets
+# Programme principal
+######################
+# Création des widgets 
+
+"""Pour le menus"""
 bvn= tk.Label(racine, text= "SNAKE", font = ("Times", "30", "italic"), fg= "green")
-bvn.grid(row=1, column=1, columnspan=3)
 pseudo_entry = tk.Entry(racine, textvariable= pseudo)
-pseudo_entry.grid(row=2,column=2)
 pseudo_label= tk.Label(racine, text="Pseudo :")
-pseudo_label.grid(row=2, column=1)
-btnjouer= tk.Button(racine, text='Go!',width= 15, command= fenjeu)
-btnjouer.grid(row=3, column=2)
+btnjouer= tk.Button(racine, text='Go!',width= 15, command= fenetreJeu)
 close = tk.Button(racine, text= "Close", command= quitter)
+
+"""Pour l'écran de jeu"""
+canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
+label= tk.Label(racine, textvariable= pseudo)
+scoreaff = tk.Label(racine, text= "Score = " + str(score))
+
+###################
+# Placement widgets
+
+"""Pour le menus"""
+bvn.grid(row=1, column=1, columnspan=3)
+pseudo_entry.grid(row=2,column=2)
+pseudo_label.grid(row=2, column=1)
+btnjouer.grid(row=3, column=2)
 close.grid(row=3, column=3)
 
-
-
-
-canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
+"""Pour l'écran de jeu"""
 canvas.grid(column=1, row= 2, columnspan=2)
 canvas.grid_remove()
-label= tk.Label(racine, textvariable= pseudo)
 label.grid(column=1, row= 1)
 label.grid_remove()
-scoreaff = tk.Label(racine, text= "Score = " + str(score))
 scoreaff.grid(column=2, row= 1)
 scoreaff.grid_remove()
 
