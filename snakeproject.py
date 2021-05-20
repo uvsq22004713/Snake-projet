@@ -54,8 +54,7 @@ racine.title("project snake")
 
 score= 0
 pseudo= tk.StringVar()
-#Varible global accès et nom fichier
-filename = r"C:Score1.txt"
+filename = r"C:Score1.txt" #Varible global accès et nom fichier
 
 ##########
 # Fonction
@@ -77,6 +76,7 @@ def cartes():
         carte_une.append(temp)
 
 def reset():
+    """Recrée tout l'environnement du jeu quand une partie se termine"""
     global score, pseudo, carte, objets, serpent, head_snake, direct
     
     carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -107,7 +107,7 @@ def reset():
     mouvement()
 
 def gameover():
-    """termine la partie"""
+    """termine la partie et renvois au menus principal"""
     tk.messagebox.showinfo(title='Game Over', message="Game Over \n vous allez retourner vers l'écran principal")
     reset()
     canvas.grid_remove()
@@ -120,7 +120,7 @@ def gameover():
     btnjouer.grid()
     
 def affichage():
-    """créer la génération du terrain, du mur du snake et 
+    """créer la génération du terrain, du mur, du snake et 
        de la pomme avec des chiffres pour l'utiliser avec une matrice"""
     global objets
     if len(objets) != 0:
@@ -171,8 +171,29 @@ def move_snake(head_x, head_y):
     carte[head_y][head_x] = 3
 
 def snake():
+    """Fonction qui réunit le déplacement et l'affichage du serpent"""
     move_snake(6, 7)
     affichage()
+
+
+##################################################
+#Fonctions relatives aux changements de directions
+
+def haut(*args):
+    global direct
+    direct = "haut"
+
+def bas(*args):
+    global direct
+    direct = "bas"
+
+def gauche(*args):
+    global direct
+    direct = "gauche"
+
+def droite(*args):
+    global direct
+    direct = "droite"
 
 def mouvement():
     global direct, carte, head_snake, serpent, score, scoreaff
@@ -209,25 +230,6 @@ def mouvement():
     affichage()
     racine.after(vitesse, mouvement)
 
-##################################################
-#Fonctions relatives aux changements de directions
-
-def haut(*args):
-    global direct
-    direct = "haut"
-
-def bas(*args):
-    global direct
-    direct = "bas"
-
-def gauche(*args):
-    global direct
-    direct = "gauche"
-
-def droite(*args):
-    global direct
-    direct = "droite"
-
 def fenetreJeu():
         bvn.grid_remove()
         pseudo_entry.grid_remove()
@@ -261,7 +263,7 @@ def fenetre_score():
         text_area.configure(state='disabled')
         
     f_score.mainloop()
-    
+
 ######################
 # Programme principal
 ######################
