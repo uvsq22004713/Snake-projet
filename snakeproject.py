@@ -12,6 +12,7 @@
 # Import des librairie
 
 import tkinter as tk
+import tkinter.scrolledtext as st
 from random import randint
 from tkinter.messagebox import *
 
@@ -53,7 +54,8 @@ racine.title("project snake")
 
 score= 0
 pseudo= tk.StringVar()
-
+#Varible global accès et nom fichier
+filename = r"C:Score1.txt"
 
 ##########
 # Fonction
@@ -190,6 +192,7 @@ def mouvement():
         snake_x += 1
 
     if carte[snake_y][snake_x] == 1 or carte[snake_y][snake_x] == 3:
+        save_score()
         gameover()
         return
 
@@ -235,6 +238,30 @@ def fenetreJeu():
         label.grid()
         scoreaff.grid()
 
+def save_score():
+    """Sauvegarde des scores"""
+    global score
+    with open(filename, "a") as f_scoring:
+        f_scoring.write(str(score) + " " + pseudo.get() + " \n")
+
+def fenetre_score():
+    """Affichage de la fenetre des scores"""
+    f_score = tk.Tk()
+    Score_label = tk.Label(f_score,text = "10 meilleurs scores",font =( "Time New Roman",15), background = 'green', foreground = 'White')
+    Score_label.grid(row=1,column=0)
+    texte_area = st.ScrolledText(f_score,width=30,height = 8,font = ("Time New Roman",15))
+    texte_area.grid(row=2,column = 0, pady = 0, padx = 0)
+
+    
+    with open(filename,"r") as f_old_scoring:
+        oldscore = f_old_scoring.readlines()
+        oldscore.sort(reverse=True)
+        for scores in oldscore:
+            texte_area.insert(tk.INSERT,str(" " +scores.upper()))
+        text_area.configure(state='disabled')
+        
+    f_score.mainloop()
+    
 ######################
 # Programme principal
 ######################
@@ -251,6 +278,7 @@ close = tk.Button(racine, text= "Close", command= quitter)
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
 label= tk.Label(racine, textvariable= pseudo)
 scoreaff = tk.Label(racine, text= "Score = " + str(score))
+ancien_score= tk.Button(racine, text= "Ancien score", command= fenetre_score)
 
 ###################
 # Placement widgets
@@ -269,7 +297,7 @@ label.grid(column=1, row= 1)
 label.grid_remove()
 scoreaff.grid(column=2, row= 1)
 scoreaff.grid_remove()
-
+ancien_score.grid(row= 2, column= 3)
 ######################
 # Appel  de fonctions
 
