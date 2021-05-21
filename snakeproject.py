@@ -59,9 +59,11 @@ filename = r"C:Score1.txt" #Varible global accès et nom fichier
 ##########
 # Fonction
 
+
 def quitter():
     """permet de quitter la fenêtre actuelle"""
     racine.destroy()
+
 
 def cartes():
 
@@ -75,10 +77,11 @@ def cartes():
                 temp.append(0)
         carte_une.append(temp)
 
+
 def reset():
     """Recrée tout l'environnement du jeu quand une partie se termine"""
     global score, pseudo, carte, objets, serpent, head_snake, direct
-    
+
     carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -106,6 +109,7 @@ def reset():
     snake()
     mouvement()
 
+
 def gameover():
     """termine la partie et renvois au menus principal"""
     tk.messagebox.showinfo(title='Game Over', message="Game Over \n vous allez retourner vers l'écran principal")
@@ -118,7 +122,8 @@ def gameover():
     pseudo_label.grid()
     pseudo_entry.grid()
     btnjouer.grid()
-    
+
+
 def affichage():
     """créer la génération du terrain, du mur, du snake et 
        de la pomme avec des chiffres pour l'utiliser avec une matrice"""
@@ -148,9 +153,11 @@ def affichage():
                                                outline="springgreen4")
                 objets.append(tete)
 
+
 def pomme_detector(pos_x, pos_y):
     global carte
     return carte[pos_y][pos_x] == 2
+
 
 def generation_pomme():
     global score
@@ -163,12 +170,14 @@ def generation_pomme():
     carte[one][two] = 2
     affichage()
 
+
 def move_snake(head_x, head_y):
     global head_snake, serpent, carte
 
     head_snake = (head_x, head_y)
     serpent.insert(0, head_snake)
     carte[head_y][head_x] = 3
+
 
 def snake():
     """Fonction qui réunit le déplacement et l'affichage du serpent"""
@@ -183,17 +192,21 @@ def haut(*args):
     global direct
     direct = "haut"
 
+
 def bas(*args):
     global direct
     direct = "bas"
+
 
 def gauche(*args):
     global direct
     direct = "gauche"
 
+
 def droite(*args):
     global direct
     direct = "droite"
+
 
 def mouvement():
     global direct, carte, head_snake, serpent, score, scoreaff
@@ -230,6 +243,7 @@ def mouvement():
     affichage()
     racine.after(vitesse, mouvement)
 
+
 def fenetreJeu():
         bvn.grid_remove()
         pseudo_entry.grid_remove()
@@ -240,11 +254,13 @@ def fenetreJeu():
         label.grid()
         scoreaff.grid()
 
+
 def save_score():
     """Sauvegarde des scores"""
     global score
     with open(filename, "a") as f_scoring:
         f_scoring.write(str(score) + " " + pseudo.get() + " \n")
+
 
 def fenetre_score():
     """Affichage de la fenetre des scores"""
