@@ -315,7 +315,7 @@ label.grid(column= 1, row= 1)
 label.grid_remove()
 scoreaff.grid(column= 2, row= 1)
 scoreaff.grid_remove()
-ancien_score.grid(row= 4, column= 1)
+ancien_score.grid(row= 3, column= 1)
 ######################
 # Appel  de fonctions
 
