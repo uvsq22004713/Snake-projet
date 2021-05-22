@@ -48,7 +48,7 @@ filename = r"C:Score1.txt" #Varible global accès et nom fichier
 ##########
 # Fonction
 
-
+cpt_pomme = 0
 def quitter(x):
     """permet de quitter la fenêtre actuelle"""
     x.destroy()
@@ -80,6 +80,7 @@ def cartes(num):
             else:
                 temp.append(0)
         carte.append(temp)
+
         
 
 def reset():
@@ -235,7 +236,7 @@ def droite(*args):
 
 
 def mouvement():
-    global direct, carte, head_snake, serpent, score, scoreaff
+    global direct, carte, head_snake, serpent, score, scoreaff, cpt_pomme
     if direct is None:
         racine.after(vitesse, mouvement)
         return
@@ -265,6 +266,16 @@ def mouvement():
         move_snake(snake_x, snake_y)
         (last_x, last_y) = serpent.pop()
         carte[last_y][last_x] = 0
+    if cpt_pomme == 0:
+        lim= len(carte)
+        one = randint(1, lim)
+        two = randint(1, lim)
+        while carte[one][two] != 0:
+            one = randint(1, lim)
+            two = randint(1, lim)
+        cpt_pomme = 1
+
+        carte[one][two] = 2
 
     affichage()
     racine.after(vitesse, mouvement)
