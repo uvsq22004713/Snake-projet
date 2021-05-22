@@ -309,11 +309,11 @@ btnjouer.grid(row= 3, column= 2)
 close.grid(row= 3, column= 3)
 
 """Pour l'écran de jeu"""
-canvas.grid(column= 1, row= 2, columnspan= 2)
+canvas.grid(column= 1, row= 2, columnspan= 3)
 canvas.grid_remove()
 label.grid(column= 1, row= 1)
 label.grid_remove()
-scoreaff.grid(column= 2, row= 1)
+scoreaff.grid(column= 3, row= 1)
 scoreaff.grid_remove()
 ancien_score.grid(row= 3, column= 1)
 ######################
