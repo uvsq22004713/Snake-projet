@@ -27,22 +27,11 @@ x, y = WIDTH / CARRE, HEIGHT / CARRE
 ###################
 # Variables globals
 
+stock = 0
 direct = None
 vitesse = 300
 
-carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-         ]
-
+carte= []
 
 head_snake = (0, 0)
 serpent = []
@@ -60,40 +49,55 @@ filename = r"C:Score1.txt" #Varible global accès et nom fichier
 # Fonction
 
 
-def quitter():
+def quitter(x):
     """permet de quitter la fenêtre actuelle"""
-    racine.destroy()
+    x.destroy()
+    if x == racine:
+        map_select_frame.destroy()
 
 
-def cartes(t_carte):
+def cartes(num):
+    """permet de modifier la taille de la carte """
+    global stock, carte, CARRE, WIDTH, HEIGHT, x,y
+    stock= num
+    if num == 0 :
+        t_carte =11
+    elif num == 1 :
+        t_carte = 21
+        CARRE= 21
+        x, y = WIDTH / CARRE, HEIGHT / CARRE
+    elif num == 2 :
+        t_carte= 31
+        CARRE= 31
+        x, y = WIDTH / CARRE, HEIGHT / CARRE
 
-    carte_une = []
+    carte = []
     for i in range(t_carte):
         temp = []
         for j in range(t_carte):
-            if i == 0 or i == 124 or j == 0 or j == 124:
+            if i == 0 or i == t_carte-1 or j == 0 or j == t_carte-1 :
                 temp.append(1)
             else:
                 temp.append(0)
-        carte_une.append(temp)
-
+        carte.append(temp)
+        
 
 def reset():
     """Recrée tout l'environnement du jeu quand une partie se termine"""
     global score, pseudo, carte, objets, serpent, head_snake, direct
 
     carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-             ]
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+         ]
 
     head_snake = (0, 0)
     serpent = []
@@ -124,12 +128,15 @@ def gameover():
     pseudo_label.grid()
     pseudo_entry.grid()
     btnjouer.grid()
+    maps.grid()
 
 
 def affichage():
     """créer la génération du terrain, du mur, du snake et 
        de la pomme avec des chiffres pour l'utiliser avec une matrice"""
     global objets
+    if carte== []:
+        cartes(0)
     if len(objets) != 0:
         for elem in objets:
             canvas.delete(elem)
@@ -177,12 +184,14 @@ def pomme_detector(pos_x, pos_y):
 
 
 def generation_pomme():
+    """permet de generer des pommes"""
     global score
-    one = randint(1, 9)
-    two = randint(1, 9)
+    lim= len(carte)
+    one = randint(1, lim)
+    two = randint(1, lim)
     while carte[one][two] != 0:
-        one = randint(1, 9)
-        two = randint(1, 9)
+        one = randint(1, lim)
+        two = randint(1, lim)
 
     carte[one][two] = 2
     affichage()
@@ -261,11 +270,49 @@ def mouvement():
     racine.after(vitesse, mouvement)
 
 
+def map_decoche(x,y):
+    """permet de décocher les différentes tailles de cartes et enregistrer la sélection"""
+    if x ==0:
+        petite.deselect()
+    if x==1 or y ==1:
+        moyenne.deselect()
+    if y ==2:
+        grande.deselect()
+    somme= x + y
+    if somme ==3:
+        cartes(0)
+    elif somme==2:
+        cartes(1)
+    elif somme==1:
+        cartes(2)
+
+
+def map_select():
+    """permet de sélectionner la carte depuis un nouvel onglet"""
+    global petite, moyenne, grande, map_select_frame
+    map_select_frame= tk.Tk()
+    map_select_frame.title("Choisissez la taille de votre carte")
+    
+    petite= tk.Checkbutton(map_select_frame, text='Petite', command= lambda: map_decoche(1,2))
+    moyenne= tk.Checkbutton(map_select_frame, text='Moyenne', command= lambda: map_decoche(0,2))
+    grande= tk.Checkbutton(map_select_frame, text='Grande', command= lambda: map_decoche(0,1))
+    quitter_maps= tk.Button(map_select_frame, text='Quitter', command= lambda: quitter(map_select_frame))
+    phrase= tk.Label(map_select_frame, text='Choisissez la taille de votre carte!')
+
+    phrase.grid(row=0, column=1, columnspan=3)
+    petite.grid(row=2, column=1)
+    moyenne.grid(row=2, column=2)
+    grande.grid(row=2, column=3)
+    quitter_maps.grid(row=3, column=2, columnspan=2)
+    map_select_frame.mainloop()
+
+
 def fenetreJeu():
         bvn.grid_remove()
         pseudo_entry.grid_remove()
         pseudo_label.grid_remove()
         btnjouer.grid_remove()
+        maps.grid_remove()
         
         canvas.grid()
         label.grid()
@@ -311,7 +358,8 @@ bvn= tk.Label(racine, text= "SNAKE", font = ("Times", "30", "italic"), fg= "gree
 pseudo_entry = tk.Entry(racine, textvariable= pseudo)
 pseudo_label= tk.Label(racine, text="Pseudo :")
 btnjouer= tk.Button(racine, text='Go!',width= 15, command= fenetreJeu)
-close = tk.Button(racine, text= "Close", command= quitter)
+close = tk.Button(racine, text= "Close", command= lambda: quitter(racine))
+maps = tk.Button(racine, text="Maps", command= map_select)
 
 """Pour l'écran de jeu"""
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
@@ -324,10 +372,12 @@ ancien_score= tk.Button(racine, text= "Ancien score", command= fenetre_score)
 
 """Pour le menus"""
 bvn.grid(row=1, column= 1, columnspan= 3)
-pseudo_entry.grid(row= 2,column= 2)
 pseudo_label.grid(row= 2, column= 1)
+pseudo_entry.grid(row= 2,column= 2)
 btnjouer.grid(row= 3, column= 2)
+maps.grid(row=2, column=3)
 close.grid(row= 3, column= 3)
+
 
 """Pour l'écran de jeu"""
 canvas.grid(column= 1, row= 2, columnspan= 3)
