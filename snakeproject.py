@@ -212,7 +212,7 @@ def snake():
     affichage()
 
 
-##################################################
+###################################################
 #Fonctions relatives aux changements de directions
 
 def haut(*args):
