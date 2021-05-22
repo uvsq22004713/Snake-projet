@@ -112,7 +112,9 @@ def reset():
 
 def gameover():
     """termine la partie et renvois au menus principal"""
-    tk.messagebox.showinfo(title='Game Over', message="Game Over \n vous allez retourner vers l'écran principal")
+    tk.messagebox.showinfo(title='Game Over',
+                            message="Game Over \n vous allez retourner vers l'écran principal"
+                            )
     reset()
     canvas.grid_remove()
     label.grid_remove()
@@ -135,22 +137,37 @@ def affichage():
     for i in range(len(carte)):
         for j in range(len(carte[0])):
             if carte[j][i] == 1:
-                mur = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="wheat2", outline="black")
+                mur = canvas.create_rectangle((x * i, y * j),
+                                              ((x * i) + x, (y * j) + y),
+                                              fill="wheat2",
+                                              outline="black"
+                                              )
                 objets.append(mur)
             elif carte[j][i] == 0:
-                herbe = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="pale green",
-                                                outline="pale green")
+                herbe = canvas.create_rectangle((x * i, y * j), 
+                                                ((x * i) + x, (y * j) + y), 
+                                                fill="pale green",
+                                                outline="pale green"
+                                                )
                 objets.append(herbe)
             elif carte[j][i] == 2:
-                pomme1 = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="pale green",
-                                                 outline="pale green")
-                pomme2 = canvas.create_oval((x * i) + 10, (y * j) + 10, ((x * i) + x) - 10, ((y * j) + y) - 10,
-                                            fill="firebrick2")
+                pomme1 = canvas.create_rectangle((x * i, y * j),
+                                                ((x * i) + x, (y * j) + y),
+                                                fill="pale green",
+                                                outline="pale green"
+                                                )
+                pomme2 = canvas.create_oval(((x * i) + 10, (y * j) + 10),
+                                            (((x * i) + x) - 10, ((y * j) + y) - 10),
+                                            fill="firebrick2"
+                                            )
                 objets.append(pomme1)
                 objets.append(pomme2)
             elif carte[j][i] == 3:
-                tete = canvas.create_rectangle(x * i, y * j, (x * i) + x, (y * j) + y, fill="springgreen4",
-                                               outline="springgreen4")
+                tete = canvas.create_rectangle((x * i, y * j),
+                                                ((x * i) + x, (y * j) + y),
+                                                fill="springgreen4",
+                                                outline="springgreen4"
+                                                )
                 objets.append(tete)
 
 
@@ -265,7 +282,11 @@ def save_score():
 def fenetre_score():
     """Affichage de la fenetre des scores"""
     f_score = tk.Tk()
-    Score_label = tk.Label(f_score,text = "10 meilleurs scores",font =( "Time New Roman",15), background = 'green', foreground = 'White')
+    Score_label = tk.Label(f_score,text = "10 meilleurs scores",
+                            font =( "Time New Roman",15),
+                            background = 'green',
+                            foreground = 'White'
+                            )
     Score_label.grid(row=1,column=0)
     texte_area = st.ScrolledText(f_score,width=30,height = 8,font = ("Time New Roman",15))
     texte_area.grid(row=2,column = 0, pady = 0, padx = 0)
@@ -276,7 +297,7 @@ def fenetre_score():
         oldscore.sort(reverse=True)
         for scores in oldscore:
             texte_area.insert(tk.INSERT,str(" " +scores.upper()))
-        text_area.configure(state='disabled')
+        texte_area.configure(state='disabled')
         
     f_score.mainloop()
 
@@ -302,20 +323,20 @@ ancien_score= tk.Button(racine, text= "Ancien score", command= fenetre_score)
 # Placement widgets
 
 """Pour le menus"""
-bvn.grid(row=1, column=1, columnspan=3)
-pseudo_entry.grid(row=2,column=2)
-pseudo_label.grid(row=2, column=1)
-btnjouer.grid(row=3, column=2)
-close.grid(row=3, column=3)
+bvn.grid(row=1, column= 1, columnspan= 3)
+pseudo_entry.grid(row= 2,column= 2)
+pseudo_label.grid(row= 2, column= 1)
+btnjouer.grid(row= 3, column= 2)
+close.grid(row= 3, column= 3)
 
 """Pour l'écran de jeu"""
-canvas.grid(column=1, row= 2, columnspan=2)
+canvas.grid(column= 1, row= 2, columnspan= 3)
 canvas.grid_remove()
-label.grid(column=1, row= 1)
+label.grid(column= 1, row= 1)
 label.grid_remove()
-scoreaff.grid(column=2, row= 1)
+scoreaff.grid(column= 3, row= 1)
 scoreaff.grid_remove()
-ancien_score.grid(row= 2, column= 3)
+ancien_score.grid(row= 3, column= 1)
 ######################
 # Appel  de fonctions
 
