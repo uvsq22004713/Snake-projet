@@ -65,12 +65,12 @@ def quitter():
     racine.destroy()
 
 
-def cartes():
+def cartes(t_carte):
 
     carte_une = []
-    for i in range(125):
+    for i in range(t_carte):
         temp = []
-        for j in range(125):
+        for j in range(t_carte):
             if i == 0 or i == 124 or j == 0 or j == 124:
                 temp.append(1)
             else:
