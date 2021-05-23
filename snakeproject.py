@@ -62,6 +62,8 @@ def cartes(num):
     stock= num
     if num == 0 :
         t_carte =11
+        CARRE = 11
+        x, y = WIDTH / CARRE, HEIGHT / CARRE
     elif num == 1 :
         t_carte = 21
         CARRE= 21
@@ -85,32 +87,22 @@ def cartes(num):
 
 def reset():
     """Recrée tout l'environnement du jeu quand une partie se termine"""
-    global score, pseudo, carte, objets, serpent, head_snake, direct
+    global score, pseudo, carte, objets, serpent, head_snake, direct, cpt_pomme
 
-    carte = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-         ]
 
     head_snake = (0, 0)
     serpent = []
     objets = []
     direct = None
+    cpt_pomme=0
 
 
     score = 0
     pseudo.set('')
 
     affichage()
-    generation_pomme()
+    cartes(stock)
+    #generation_pomme()
     snake()
     mouvement()
 
@@ -125,11 +117,13 @@ def gameover():
     label.grid_remove()
     scoreaff.grid_remove()
 
+
     bvn.grid()
     pseudo_label.grid()
     pseudo_entry.grid()
     btnjouer.grid()
     maps.grid()
+
 
 
 def affichage():
@@ -267,15 +261,10 @@ def mouvement():
         (last_x, last_y) = serpent.pop()
         carte[last_y][last_x] = 0
     if cpt_pomme == 0:
-        lim= len(carte)
-        one = randint(1, lim)
-        two = randint(1, lim)
-        while carte[one][two] != 0:
-            one = randint(1, lim)
-            two = randint(1, lim)
+        generation_pomme()
         cpt_pomme = 1
 
-        carte[one][two] = 2
+        #carte[one][two] = 2
 
     affichage()
     racine.after(vitesse, mouvement)
@@ -325,6 +314,7 @@ def fenetreJeu():
         btnjouer.grid_remove()
         maps.grid_remove()
         
+        cartes(stock)
         canvas.grid()
         label.grid()
         scoreaff.grid()
@@ -401,8 +391,9 @@ ancien_score.grid(row= 3, column= 1)
 ######################
 # Appel  de fonctions
 
+
 affichage()
-generation_pomme()
+#generation_pomme()
 snake()
 mouvement()
 
