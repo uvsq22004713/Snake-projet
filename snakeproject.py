@@ -46,8 +46,8 @@ score= 0
 pseudo= tk.StringVar()
 filename = r"C:Score1.txt" #Variable global accès et nom fichier
 
-##########
-# Fonction
+########################################
+# Fonctions
 
 
 def quitter(x):
@@ -102,9 +102,8 @@ def reset():
     score = 0
     pseudo.set('')
 
-    affichage()
     cartes(stock)
-    #generation_pomme()
+    affichage()
     snake()
     mouvement()
 
@@ -129,9 +128,9 @@ def gameover():
 
 def affichage():
     """créer la génération du terrain, du mur, du snake et 
-       de la pomme avec des chiffres pour l'utiliser avec une matrice"""
+       de la pomme avec des chiffres pour l'utiliser avec une matrice
 
-    """ chaque element est representé par un chiffre
+    chaque element est representé par un chiffre
     pomme = 2
     tete du serpent = 3
     mur = 1
@@ -145,7 +144,7 @@ def affichage():
             canvas.delete(elem)
         objets = []
 
-    """ affiche les elements sur la carte""" 
+    #affiche les elements sur la carte
     for i in range(len(carte)):
         for j in range(len(carte[0])):
             if carte[j][i] == 1: #affichage murs
@@ -163,13 +162,13 @@ def affichage():
                                                 )
                 objets.append(herbe)
             elif carte[j][i] == 2: #affichage des pommes
-                """ Efface l'ancienne pomme en recouvrant de vert la dernière position"""
+                #Efface l'ancienne pomme en recouvrant de vert la dernière position
                 pomme1 = canvas.create_rectangle((x * i, y * j),
                                                 ((x * i) + x, (y * j) + y),
                                                 fill="pale green",
                                                 outline="pale green"
                                                 )
-                """affiche la nouvelle pomme"""
+                #affiche la nouvelle pomme
                 pomme2 = canvas.create_oval(((x * i) + 10, (y * j) + 10),
                                             (((x * i) + x) - 10, ((y * j) + y) - 10),
                                             fill="firebrick2"
@@ -184,8 +183,9 @@ def affichage():
                                                 )
                 objets.append(tete)
 
-"""renvoie la position de la pomme"""
+
 def pomme_detector(pos_x, pos_y):
+    """détecte et renvoie la présence d'une pomme dans la carte"""
     global carte
     return carte[pos_y][pos_x] == 2
 
@@ -204,6 +204,7 @@ def generation_pomme():
 
 
 def move_snake(head_x, head_y):
+    """Sert a déplacer le serpent"""
     global head_snake, serpent, carte
 
     head_snake = (head_x, head_y)
@@ -259,13 +260,13 @@ def mouvement():
     elif direct == "droite":
         snake_x += 1
 
-    """ si on est sur objetc "mur" ou "serpent" on perd"""
+    #si on est sur objet "mur" ou "serpent" on perd
     if carte[snake_y][snake_x] == 1 or carte[snake_y][snake_x] == 3:
         save_score()
         gameover()
         return
 
-    """ si on est sur la pomme"""
+    #si on est sur la pomme
     if pomme_detector(snake_x, snake_y):
         move_snake(snake_x, snake_y)
         generation_pomme() # on génére une nouvelle pomme
@@ -276,7 +277,7 @@ def mouvement():
         (last_x, last_y) = serpent.pop()
         carte[last_y][last_x] = 0
     
-    """ generation d'une pomme si premier passage"""
+    #generation d'une pomme si premier passage
     if cpt_pomme == 0:
         generation_pomme()
         cpt_pomme = 1
@@ -285,6 +286,9 @@ def mouvement():
 
     affichage()
     racine.after(vitesse, mouvement)
+
+################################################################
+# Affichages et fenêtres
 
 
 def map_decoche(x,y):
