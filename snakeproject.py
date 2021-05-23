@@ -17,15 +17,13 @@ from random import randint
 from tkinter.messagebox import *
 
 ############
-# CONSTANTES
+# Variables globales
 
 WIDTH = 500
 HEIGHT = 500
 CARRE = 11
 x, y = WIDTH / CARRE, HEIGHT / CARRE
 
-###################
-# Variables globals
 
 stock = 0
 direct = None
@@ -42,9 +40,11 @@ objets = []
 racine = tk.Tk()
 racine.title("project snake")
 
+fenetreon= False
+
 score= 0
 pseudo= tk.StringVar()
-filename = r"C:Score1.txt" #Varible global accès et nom fichier
+filename = r"C:Score1.txt" #Variable global accès et nom fichier
 
 ##########
 # Fonction
@@ -52,9 +52,11 @@ filename = r"C:Score1.txt" #Varible global accès et nom fichier
 
 def quitter(x):
     """permet de quitter la fenêtre actuelle"""
+    global fenetreon
     x.destroy()
-    if x == racine:
-        map_select_frame.destroy()
+    if fenetreon == True:
+        opt_select_frame.destroy()
+        fenetreon= False
 
 
 def cartes(num):
@@ -84,7 +86,6 @@ def cartes(num):
                 temp.append(0)
         carte.append(temp)
 
-        
 
 def reset():
     """Recrée tout l'environnement du jeu quand une partie se termine"""
@@ -115,7 +116,7 @@ def gameover():
                             )
     reset()
     canvas.grid_remove()
-    label.grid_remove()
+    pseudoaff.grid_remove()
     scoreaff.grid_remove()
 
 
@@ -124,7 +125,6 @@ def gameover():
     pseudo_entry.grid()
     btnjouer.grid()
     maps.grid()
-
 
 
 def affichage():
@@ -182,13 +182,12 @@ def pomme_detector(pos_x, pos_y):
 def generation_pomme():
     """permet de generer des pommes"""
     global score
-    lim= len(carte)
+    lim= len(carte)-1
     one = randint(1, lim)
     two = randint(1, lim)
     while carte[one][two] != 0:
         one = randint(1, lim)
         two = randint(1, lim)
-
     carte[one][two] = 2
     affichage()
 
@@ -265,8 +264,8 @@ def mouvement():
     if cpt_pomme == 0:
         generation_pomme()
         cpt_pomme = 1
+        
 
-        #carte[one][two] = 2
 
     affichage()
     racine.after(vitesse, mouvement)
@@ -289,37 +288,73 @@ def map_decoche(x,y):
         cartes(2)
 
 
-def map_select():
-    """permet de sélectionner la carte depuis un nouvel onglet"""
-    global petite, moyenne, grande, map_select_frame
-    map_select_frame= tk.Tk()
-    map_select_frame.title("Choisissez la taille de votre carte")
-    
-    petite= tk.Checkbutton(map_select_frame, text='Petite', command= lambda: map_decoche(1,2))
-    moyenne= tk.Checkbutton(map_select_frame, text='Moyenne', command= lambda: map_decoche(0,2))
-    grande= tk.Checkbutton(map_select_frame, text='Grande', command= lambda: map_decoche(0,1))
-    quitter_maps= tk.Button(map_select_frame, text='Quitter', command= lambda: quitter(map_select_frame))
-    phrase= tk.Label(map_select_frame, text='Choisissez la taille de votre carte!')
+def vit_decoche(x,y):
+    """permet de décocher les différentes vitesses de jeu et d'enregistrer la sélection"""
+    global vitesse
+    if x ==0:
+        lent.deselect()
+    if x==1 or y ==1:
+        moyen.deselect()
+    if y ==2:
+        rapide.deselect()
+    somme= x + y
+    if somme ==3:
+        vitesse = 300
+    elif somme==2:
+        vitesse = 200
+    elif somme==1:
+        vitesse = 100
 
-    phrase.grid(row=0, column=1, columnspan=3)
+
+def option_select():
+    """permet de sélectionner la carte depuis un nouvel onglet"""
+    global petite, moyenne, grande, lent, moyen, rapide, opt_select_frame, fenetreon
+    opt_select_frame= tk.Tk()
+    opt_select_frame.title("Choisissez la taille de votre carte")
+    fenetreon= True
+    
+    phrase1= tk.Label(opt_select_frame, text='Choisissez la taille de votre carte!')
+    petite= tk.Checkbutton(opt_select_frame, text='Petite', command= lambda: map_decoche(1,2))
+    moyenne= tk.Checkbutton(opt_select_frame, text='Moyenne', command= lambda: map_decoche(0,2))
+    grande= tk.Checkbutton(opt_select_frame, text='Grande', command= lambda: map_decoche(0,1))
+
+    phrase2=tk.Label(opt_select_frame, text='Choissisez la vitesse de la partie!')
+    lent= tk.Checkbutton(opt_select_frame, text='Lent', command= lambda: vit_decoche(1,2))
+    moyen= tk.Checkbutton(opt_select_frame, text='Moyen', command= lambda: vit_decoche(0,2))
+    rapide = tk.Checkbutton(opt_select_frame, text='Rapide', command= lambda: vit_decoche(0,1))
+
+    quitter_maps= tk.Button(opt_select_frame, text='Quitter', command= lambda: quitter(opt_select_frame))
+    
+    phrase1.grid(row=0, column=1, columnspan=3)
     petite.grid(row=2, column=1)
     moyenne.grid(row=2, column=2)
     grande.grid(row=2, column=3)
-    quitter_maps.grid(row=3, column=2, columnspan=2)
-    map_select_frame.mainloop()
+
+    phrase2.grid(row=4, column=1, columnspan=3)
+    lent.grid(row=5, column=1)
+    moyen.grid(row=5, column=2)
+    rapide.grid(row=5, column=3)
+
+    quitter_maps.grid(row=6, column=2, columnspan=2)
+    opt_select_frame.mainloop()
 
 
 def fenetreJeu():
-        bvn.grid_remove()
-        pseudo_entry.grid_remove()
-        pseudo_label.grid_remove()
-        btnjouer.grid_remove()
-        maps.grid_remove()
-        
-        cartes(stock)
-        canvas.grid()
-        label.grid()
-        scoreaff.grid()
+    """permet de passer à l'affichage du jeu"""
+    global fenetreon
+    fenetreon = False
+    if fenetreon==True:
+        quitter(opt_select_frame)
+    bvn.grid_remove()
+    pseudo_entry.grid_remove()
+    pseudo_label.grid_remove()
+    btnjouer.grid_remove()
+    maps.grid_remove()
+       
+    cartes(stock)
+    canvas.grid()
+    pseudoaff.grid()
+    scoreaff.grid()
 
 
 def save_score():
@@ -362,11 +397,11 @@ pseudo_entry = tk.Entry(racine, textvariable= pseudo)
 pseudo_label= tk.Label(racine, text="Pseudo :")
 btnjouer= tk.Button(racine, text='Go!',width= 15, command= fenetreJeu)
 close = tk.Button(racine, text= "Close", command= lambda: quitter(racine))
-maps = tk.Button(racine, text="Maps", command= map_select)
+maps = tk.Button(racine, text="Options", command= option_select)
 
 """Pour l'écran de jeu"""
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
-label= tk.Label(racine, textvariable= pseudo)
+pseudoaff= tk.Label(racine, textvariable= pseudo)
 scoreaff = tk.Label(racine, text= "Score = " + str(score))
 ancien_score= tk.Button(racine, text= "Ancien score", command= fenetre_score)
 
@@ -385,17 +420,16 @@ close.grid(row= 3, column= 3)
 """Pour l'écran de jeu"""
 canvas.grid(column= 1, row= 2, columnspan= 3)
 canvas.grid_remove()
-label.grid(column= 1, row= 1)
-label.grid_remove()
+pseudoaff.grid(column= 1, row= 1)
+pseudoaff.grid_remove()
 scoreaff.grid(column= 3, row= 1)
 scoreaff.grid_remove()
 ancien_score.grid(row= 3, column= 1)
 ######################
 # Appel  de fonctions
 
-
+cartes(stock)
 affichage()
-#generation_pomme()
 snake()
 mouvement()
 
