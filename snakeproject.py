@@ -46,8 +46,8 @@ score= 0
 pseudo= tk.StringVar()
 filename = r"C:Score1.txt" #Variable global accès et nom fichier
 
-##########
-# Fonction
+########################################
+# Fonctions
 
 
 def quitter(x):
@@ -175,6 +175,7 @@ def affichage():
 
 
 def pomme_detector(pos_x, pos_y):
+    """détecte la présence d'une pomme dans la carte"""
     global carte
     return carte[pos_y][pos_x] == 2
 
@@ -193,6 +194,7 @@ def generation_pomme():
 
 
 def move_snake(head_x, head_y):
+    """Sert a déplacer le serpent"""
     global head_snake, serpent, carte
 
     head_snake = (head_x, head_y)
@@ -269,6 +271,9 @@ def mouvement():
 
     affichage()
     racine.after(vitesse, mouvement)
+
+################################################################
+# Affichages et fenêtres
 
 
 def map_decoche(x,y):
