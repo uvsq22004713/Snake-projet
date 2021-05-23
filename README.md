@@ -3,15 +3,26 @@
 
 Snake est un jeu apparu dans les années 70!  
 Le joueur doit diriger un serpent pour récupérer les pommes qui apparaissent aléatoirement. A chaque pomme mangé le serpent grandit. 
+
 Le but : Manger le plus de pomme.
 
 ## Les commandes 
+
+Toutes les commandes sont accéssibles a partir du clavier ou de la souris.
+Le déplacement du serpent s'efffectue uniquement avec les fléches du clavier.
+Pour les commandes ont a voulu choisir des touches instinctives et donc facile d'utilisation.  
+
 ### Pour le menus
 
 Dans le menus vous trouverez:  
     * Une zone de texte pour rentrer votre pseudonyme   
     * Un bouton *close* pour fermer la fenêtre  
     * Un bouton *Go!* pour commencer la partie  
+    * Un bouton *Map* qui permet de choisir la taille de la carte sur laquelle on veut jouer  
+    Il y a donc trois case au choix à cocher:  
+        - Petite
+        - Moyenne
+        - Grande
 
 ### Pour la fenêtre de jeu
 
@@ -43,12 +54,12 @@ On trouvera sur cette fenêtre:
 4- Si le serpent percute le mur ou son propre corp c'est Game Over  
 5- Il n'y a pas de limite de temps  
 
-## Les difficultés rencontré 
-### L'affichage des score 
+## Les difficultés rencontrées 
+### L'affichage des score (Lara)
 
 En effet, je me demandais comment j'allais afficher les scores.   
-Est-ce que je devais créer un bouton qui générait la page de tout les fichier présent sur notre ordinateur et aller le chercher nous même?  
-Est-ce que je devais seuleent enregistrer les score dans un fichier?  
+Est-ce que je devais créer un bouton qui générait la page de tout les fichiers présent sur notre ordinateur et aller le chercher nous même?  
+Est-ce que je devais seulement enregistrer les score dans un fichier?  
 Je me posais plein de questions. Ce que j'ai donc fait:  
     J'ai fait un bouton qui génère une page où tous les scores s'affichent par ordre décroissant.  
     La création de fichier se fait par la fonction *save* que j'appelle dans le fonction *game_over*. De ce fait lorsque le tout premier joueur perd, un fichier se créer à l'emplacement initial où se trouve le joueur.
