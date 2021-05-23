@@ -32,6 +32,7 @@ direct = None
 vitesse = 300
 
 carte= []
+cpt_pomme=0
 
 head_snake = (0, 0)
 serpent = []
@@ -48,7 +49,7 @@ filename = r"C:Score1.txt" #Varible global accès et nom fichier
 ##########
 # Fonction
 
-cpt_pomme = 0
+
 def quitter(x):
     """permet de quitter la fenêtre actuelle"""
     x.destroy()
@@ -230,6 +231,7 @@ def droite(*args):
 
 
 def mouvement():
+    """peremt de déplacer le snake"""
     global direct, carte, head_snake, serpent, score, scoreaff, cpt_pomme
     if direct is None:
         racine.after(vitesse, mouvement)
