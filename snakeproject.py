@@ -130,6 +130,13 @@ def gameover():
 def affichage():
     """créer la génération du terrain, du mur, du snake et 
        de la pomme avec des chiffres pour l'utiliser avec une matrice"""
+
+    """ chaque element est representé par un chiffre
+    pomme = 2
+    tete du serpent = 3
+    mur = 1
+    herbe = 0 """
+    
     global objets
     if carte== []:
         cartes(0)
@@ -137,35 +144,39 @@ def affichage():
         for elem in objets:
             canvas.delete(elem)
         objets = []
+
+    """ affiche les elements sur la carte""" 
     for i in range(len(carte)):
         for j in range(len(carte[0])):
-            if carte[j][i] == 1:
+            if carte[j][i] == 1: #affichage murs
                 mur = canvas.create_rectangle((x * i, y * j),
                                               ((x * i) + x, (y * j) + y),
                                               fill="wheat2",
                                               outline="black"
                                               )
                 objets.append(mur)
-            elif carte[j][i] == 0:
+            elif carte[j][i] == 0: #affichage herbe
                 herbe = canvas.create_rectangle((x * i, y * j), 
                                                 ((x * i) + x, (y * j) + y), 
                                                 fill="pale green",
                                                 outline="pale green"
                                                 )
                 objets.append(herbe)
-            elif carte[j][i] == 2:
+            elif carte[j][i] == 2: #affichage des pommes
+                """ Efface l'ancienne pomme en recouvrant de vert la dernière position"""
                 pomme1 = canvas.create_rectangle((x * i, y * j),
                                                 ((x * i) + x, (y * j) + y),
                                                 fill="pale green",
                                                 outline="pale green"
                                                 )
+                """affiche la nouvelle pomme"""
                 pomme2 = canvas.create_oval(((x * i) + 10, (y * j) + 10),
                                             (((x * i) + x) - 10, ((y * j) + y) - 10),
                                             fill="firebrick2"
                                             )
                 objets.append(pomme1)
                 objets.append(pomme2)
-            elif carte[j][i] == 3:
+            elif carte[j][i] == 3: #affichage de la tete du serpent
                 tete = canvas.create_rectangle((x * i, y * j),
                                                 ((x * i) + x, (y * j) + y),
                                                 fill="springgreen4",
@@ -173,7 +184,7 @@ def affichage():
                                                 )
                 objets.append(tete)
 
-
+"""renvoie la position de la pomme"""
 def pomme_detector(pos_x, pos_y):
     """détecte la présence d'une pomme dans la carte"""
     global carte
@@ -232,8 +243,9 @@ def droite(*args):
 
 
 def mouvement():
-    """peremt de déplacer le snake"""
+    """permet de déplacer le snake"""
     global direct, carte, head_snake, serpent, score, scoreaff, cpt_pomme
+    
     if direct is None:
         racine.after(vitesse, mouvement)
         return
@@ -249,20 +261,24 @@ def mouvement():
     elif direct == "droite":
         snake_x += 1
 
+    """ si on est sur objetc "mur" ou "serpent" on perd"""
     if carte[snake_y][snake_x] == 1 or carte[snake_y][snake_x] == 3:
         save_score()
         gameover()
         return
 
+    """ si on est sur la pomme"""
     if pomme_detector(snake_x, snake_y):
         move_snake(snake_x, snake_y)
-        generation_pomme()
-        score += 1
-        scoreaff.config(text= 'Score = ' + str(score))
-    else:
+        generation_pomme() # on génére une nouvelle pomme
+        score += 1 # on incremente le score
+        scoreaff.config(text= 'Score = ' + str(score)) #on affiche le nouveau score
+    else: 
         move_snake(snake_x, snake_y)
         (last_x, last_y) = serpent.pop()
         carte[last_y][last_x] = 0
+    
+    """ generation d'une pomme si premier passage"""
     if cpt_pomme == 0:
         generation_pomme()
         cpt_pomme = 1
