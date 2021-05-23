@@ -102,9 +102,8 @@ def reset():
     score = 0
     pseudo.set('')
 
-    affichage()
     cartes(stock)
-    #generation_pomme()
+    affichage()
     snake()
     mouvement()
 
@@ -129,9 +128,9 @@ def gameover():
 
 def affichage():
     """créer la génération du terrain, du mur, du snake et 
-       de la pomme avec des chiffres pour l'utiliser avec une matrice"""
+       de la pomme avec des chiffres pour l'utiliser avec une matrice
 
-    """ chaque element est representé par un chiffre
+    chaque element est representé par un chiffre
     pomme = 2
     tete du serpent = 3
     mur = 1
@@ -184,9 +183,9 @@ def affichage():
                                                 )
                 objets.append(tete)
 
-"""renvoie la position de la pomme"""
+
 def pomme_detector(pos_x, pos_y):
-    """détecte la présence d'une pomme dans la carte"""
+    """détecte et renvoie la présence d'une pomme dans la carte"""
     global carte
     return carte[pos_y][pos_x] == 2
 
@@ -261,13 +260,13 @@ def mouvement():
     elif direct == "droite":
         snake_x += 1
 
-    """ si on est sur objetc "mur" ou "serpent" on perd"""
+    #si on est sur objet "mur" ou "serpent" on perd
     if carte[snake_y][snake_x] == 1 or carte[snake_y][snake_x] == 3:
         save_score()
         gameover()
         return
 
-    """ si on est sur la pomme"""
+    #si on est sur la pomme
     if pomme_detector(snake_x, snake_y):
         move_snake(snake_x, snake_y)
         generation_pomme() # on génére une nouvelle pomme
@@ -278,7 +277,7 @@ def mouvement():
         (last_x, last_y) = serpent.pop()
         carte[last_y][last_x] = 0
     
-    """ generation d'une pomme si premier passage"""
+    #generation d'une pomme si premier passage
     if cpt_pomme == 0:
         generation_pomme()
         cpt_pomme = 1
