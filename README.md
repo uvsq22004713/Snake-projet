@@ -19,10 +19,10 @@ Dans le menus vous trouverez:
     * Un bouton *close* pour fermer la fenêtre  
     * Un bouton *Go!* pour commencer la partie  
     * Un bouton *Map* qui permet de choisir la taille de la carte sur laquelle on veut jouer  
-    Il y a donc trois case au choix à cocher:  
-        - Petite
-        - Moyenne
-        - Grande
+    Il y a donc trois niveaux au choix à cocher:  
+        - Niveau 1 (facile/ classic)
+        - Niveau 2 (difficulté moyenne)
+        - Niveau 3 (difficulté maximale)
 
 ### Pour la fenêtre de jeu
 

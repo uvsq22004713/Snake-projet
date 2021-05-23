@@ -60,31 +60,32 @@ def quitter(x):
 
 
 def cartes(num):
-    """permet de modifier la taille de la carte """
+    """permet de modifier la carte """
     global stock, carte, CARRE, WIDTH, HEIGHT, x,y
     stock= num
     if num == 0 :
-        t_carte =11
-        CARRE = 11
+        temp= open("niveau 1.txt", "r")
+        CARRE = 15
         x, y = WIDTH / CARRE, HEIGHT / CARRE
     elif num == 1 :
-        t_carte = 21
-        CARRE= 21
+        temp= open("niveau 2.txt", "r")
+        CARRE= 12
         x, y = WIDTH / CARRE, HEIGHT / CARRE
     elif num == 2 :
-        t_carte= 31
-        CARRE= 31
+        temp= open("niveau 3.txt", "r")
+        CARRE= 15
         x, y = WIDTH / CARRE, HEIGHT / CARRE
 
-    carte = []
-    for i in range(t_carte):
-        temp = []
-        for j in range(t_carte):
-            if i == 0 or i == t_carte-1 or j == 0 or j == t_carte-1 :
-                temp.append(1)
-            else:
-                temp.append(0)
-        carte.append(temp)
+    liste= []
+    data = []
+    for lines in temp:
+        liste = lines.split()
+        liste= list(map(int,liste))
+        
+        data.append(liste)
+    carte = data
+    temp.close()
+
 
 
 def reset():
@@ -145,9 +146,9 @@ def affichage():
         objets = []
 
     #affiche les elements sur la carte
-    for i in range(len(carte)):
-        for j in range(len(carte[0])):
-            if carte[j][i] == 1: #affichage murs
+    for j in range(len(carte)):
+        for i in range(len(carte[0])):
+            if carte[j][i] == 1: 
                 mur = canvas.create_rectangle((x * i, y * j),
                                               ((x * i) + x, (y * j) + y),
                                               fill="wheat2",
@@ -330,13 +331,13 @@ def option_select():
     """permet de sélectionner la carte depuis un nouvel onglet"""
     global petite, moyenne, grande, lent, moyen, rapide, opt_select_frame, fenetreon
     opt_select_frame= tk.Tk()
-    opt_select_frame.title("Choisissez la taille de votre carte")
+    opt_select_frame.title("Options")
     fenetreon= True
     
-    phrase1= tk.Label(opt_select_frame, text='Choisissez la taille de votre carte!')
-    petite= tk.Checkbutton(opt_select_frame, text='Petite', command= lambda: map_decoche(1,2))
-    moyenne= tk.Checkbutton(opt_select_frame, text='Moyenne', command= lambda: map_decoche(0,2))
-    grande= tk.Checkbutton(opt_select_frame, text='Grande', command= lambda: map_decoche(0,1))
+    phrase1= tk.Label(opt_select_frame, text='Choisissez le niveau que vous voulez jouer!')
+    petite= tk.Checkbutton(opt_select_frame, text='Niveau 1', command= lambda: map_decoche(1,2))
+    moyenne= tk.Checkbutton(opt_select_frame, text='Niveau 2', command= lambda: map_decoche(0,2))
+    grande= tk.Checkbutton(opt_select_frame, text='Niveau 3', command= lambda: map_decoche(0,1))
 
     phrase2=tk.Label(opt_select_frame, text='Choissisez la vitesse de la partie!')
     lent= tk.Checkbutton(opt_select_frame, text='Lent', command= lambda: vit_decoche(1,2))
