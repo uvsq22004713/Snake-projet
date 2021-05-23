@@ -144,7 +144,7 @@ def affichage():
             canvas.delete(elem)
         objets = []
 
-    """ affiche les elements sur la carte""" 
+    #affiche les elements sur la carte
     for i in range(len(carte)):
         for j in range(len(carte[0])):
             if carte[j][i] == 1: #affichage murs
@@ -162,13 +162,13 @@ def affichage():
                                                 )
                 objets.append(herbe)
             elif carte[j][i] == 2: #affichage des pommes
-                """ Efface l'ancienne pomme en recouvrant de vert la dernière position"""
+                #Efface l'ancienne pomme en recouvrant de vert la dernière position
                 pomme1 = canvas.create_rectangle((x * i, y * j),
                                                 ((x * i) + x, (y * j) + y),
                                                 fill="pale green",
                                                 outline="pale green"
                                                 )
-                """affiche la nouvelle pomme"""
+                #affiche la nouvelle pomme
                 pomme2 = canvas.create_oval(((x * i) + 10, (y * j) + 10),
                                             (((x * i) + x) - 10, ((y * j) + y) - 10),
                                             fill="firebrick2"
