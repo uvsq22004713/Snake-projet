@@ -24,11 +24,11 @@ Un menu principal vous trouverez :
     * Un bouton *Go!* pour commencer la partie  
 
 Le sous menu accéssible en cliquant sur le bouton *Options* est composer de deux parties  
-    - Le choix de la taille de la carte :  
+    => Le choix de la taille de la carte :  
         - Petite   
         - Moyenne   
         - Grande  
-    - Le choix de la vitesse du serpent :  
+    => Le choix de la vitesse du serpent :  
         - Lent  
         - Moyen   
         - Rapide  
