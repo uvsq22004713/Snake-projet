@@ -3,7 +3,7 @@
 # Olivier COTTIN
 # Clément LUKACS
 # Lara ESPINASSE   
-# Gabriel HAMOUCH
+# Gabriel HAMOUCHE
 # Hugo NAZAC
 # https://github.com/uvsq22004713/Snake-projet.git
 ##################################################
