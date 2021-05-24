@@ -103,10 +103,6 @@ def reset():
     score = 0
     pseudo.set('')
 
-    cartes(stock)
-    affichage()
-    snake()
-    mouvement()
 
 
 def gameover():
@@ -373,6 +369,10 @@ def fenetreJeu():
     maps.grid_remove()
        
     cartes(stock)
+    affichage()
+    snake()
+    mouvement()
+
     canvas.grid()
     pseudoaff.grid()
     scoreaff.grid()
@@ -446,13 +446,6 @@ pseudoaff.grid_remove()
 scoreaff.grid(column= 3, row= 1)
 scoreaff.grid_remove()
 ancien_score.grid(row= 3, column= 1)
-######################
-# Appel  de fonctions
-
-cartes(stock)
-affichage()
-snake()
-mouvement()
 
 ########################
 # Liaison des événements
