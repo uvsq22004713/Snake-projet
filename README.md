@@ -104,4 +104,22 @@ Pour cela j'ai:
 
 La sélection de la carte à aussi été une partie difficile à créer. En effet nous avons eu beaucoup de mal (avec Gabriel, nous avons eu beaucoup de mal à le faire, même à deux) à faire en sorte d'ouvrir le fichier et de copier les valeurs du ficher en .txt dans une variable sous forme de liste de liste avec des "int" . En effet au début nous y arrivions mais le format contenu dans la liste de liste (au sein de la variable ' carte ') ne convenait pas au reste des fonctions d'affichage. 
 Je pense que nous avons eu des problèmes pour suivre cette consigne car nous nous y sommes pris trop tard par rapport au reste du programme. En effet au début nous n'avions qu'une seule carte, qui était écrite au sein du programme. 
+
+
+## GABRIEL HAMOUCHE
+
+Les difficulté   que l’on a rencontré lors du projet été dans la communication dans le groupe 
+Nous n’avons eux du mal a se répartir les taches  nous aurions aimer avoir plus de cours en présentiel pour mieux communiqué .
+
+
+### AFFICHAGE , SNEAKE , move_snake ,  pomme_detector , generation_pomme 
+
+J’ai réalisé la détection de pomme et l’ajout d’un élément au corps du serpent.
+J’aurais pus réalisé une tête au serpent mais malheureusement pour de facilité et de lecture de consigne qui expliquer qu’on devait faire un bout de serpent je n’est pas juger utile de le faire 
+La difficulté que j’ai rencontré a été de réalisé les collision entre le serpent et le mur et entre le serpent et lui même  . De plus j’ai du modifié les fonction d’affichage et celle d’apparition du serpent pour pouvoir les faire fonctionner avec mes modifications , aussi j’avais un soucis dans l’apparition des pommes qui pouvait apparaitre sur le serpent que j’ai réussi a patch avec ça avec  une condition d’apparition qui permet de vérifié si les coordonné aléatoire ne corresponde pas a un mur ou un bout du serpent 
+
+
+### CARTE 
+
+Comme la dis si dessus Olivier nous avons réaliser l’importation du fichier .txt en une carte cela a été compliquer par le problème des liste dans des liste et aussi car nos carte se générais a l’envers on a du modifier les j et i des boucle for dans l’affichage.
  
