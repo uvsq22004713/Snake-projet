@@ -107,20 +107,20 @@ Je pense que nous avons eu des problèmes pour suivre cette consigne car nous no
 
 ## GABRIEL HAMOUCHE
 
-Les difficulté   que l’on a rencontré lors du projet été dans la communication dans le groupe 
-Nous n’avons eux du mal a se répartir les taches  nous aurions aimer avoir plus de cours en présentiel pour mieux communiqué .
+Les difficulté que l’on a rencontré lors du projet été dans la communication dans le groupe.
+Nous n’avons eux du mal a se répartir les taches nous aurions aimer avoir plus de cours en présentiel pour mieux communiquer.
 
 
 ### AFFICHAGE , SNEAKE , move_snake ,  pomme_detector , generation_pomme 
 
-J’ai réalisé la détection de pomme et l’ajout d’un élément au corps du serpent 
-J’aurais pus réalisé une tête au serpent mais malheureusement pour de facilité et de lecture de consigne qui expliquer qu’on devait faire un bout de serpent je n’est pas juger utile de le faire.
-La difficulté que j’ai rencontré a été de réalisé les collision entre le serpent et le mur et entre le serpent et lui même  . De plus j’ai du modifié les fonction d’affichage et celle d’apparition du serpent pour pouvoir les faire fonctionner avec mes modifications , aussi j’avais un soucis dans l’apparition des pommes qui pouvait apparaitre sur le serpent que j’ai réussi a patch avec ça avec  une condition d’apparition qui permet de vérifié si les coordonnées aléatoire ne corresponde pas a un mur ou un bout du serpent 
+J’ai réalisé la détection de pomme et l’ajout d’un élément au corps du serpent.
+J’aurais pus réalisé une tête au serpent mais malheureusement par souci de facilité,parailleurs la relecture de consigne m'a expliqué qu’on devait faire un bout de serpent,ainsi je n’est pas juger utile de le faire.
+La difficulté que j’ai rencontré a été de réalisé les collisions entre le serpent et le mur, puis entre le serpent et lui même  . De plus j’ai du modifié les fonctions d’affichage et celle d’apparition du serpent pour pouvoir les faire fonctionner avec mes modifications , aussi j’avais un soucis dans l’apparition des pommes qui pouvait apparaitre sur le serpent que j’ai réussi a patch en ajoutant une condition d’apparition qui permet de vérifier si les coordonnées aléatoires ne corresponde pas a un mur ou un bout du serpent.
 
 
 ### CARTE 
 
-Comme la dis si dessus Olivier nous avons réaliser l’importation du fichier txt en une carte cela a été compliquer par le problème des liste dans des liste et aussi car nos carte se généré a l’envers on a du modifier les j et i des boucle for dans l’affichage.
+Comme la dis si dessus Olivier nous avons réaliser l’importation du fichier .txt en une carte cela a été compliquer par le problème des liste dans des liste et aussi car nos cartes se générais a l’envers on a du modifier les j et i des boucle for dans l’affichage.
 
 
 ### HUGO NAZAC
