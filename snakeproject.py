@@ -310,7 +310,7 @@ def vit_decoche(x,y):
     global vitesse
     if x ==0:
         lent.deselect()
-    if x==1 or y ==1:
+    if x ==1 or y ==1:
         moyen.deselect()
     if y ==2:
         rapide.deselect()
@@ -388,7 +388,7 @@ def save_score():
 def fenetre_score():
     """Affichage de la fenetre des scores"""
     f_score = tk.Tk()
-    Score_label = tk.Label(f_score,text = "10 meilleurs scores",
+    Score_label = tk.Label(f_score,text = "Voici les meilleurs scores",
                             font =( "Time New Roman",15),
                             background = 'green',
                             foreground = 'White'
@@ -424,7 +424,7 @@ maps = tk.Button(racine, text="Options", command= option_select)
 canvas = tk.Canvas(racine, width=str(WIDTH), heigh=str(HEIGHT), bg="black")
 pseudoaff= tk.Label(racine, textvariable= pseudo)
 scoreaff = tk.Label(racine, text= "Score = " + str(score))
-ancien_score= tk.Button(racine, text= "Ancien score", command= fenetre_score)
+ancien_score= tk.Button(racine, text= "Anciens score", command= fenetre_score)
 
 ###################
 # Placement widgets
