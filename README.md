@@ -97,9 +97,9 @@ La partie qui m'était attribuée était la création et l'organisation des menu
 Cependant j'ai eu du mal à créer le menu *Options*. En effet j'ai été obligé de créer une nouvelle fonction qui décochait les cases déja coché du même "type" (soit pour ce qui est de la carte, soit la vitesse).   
 Pour cela j'ai:  
 -> attribué une valeur à chacune des cases à cocher:  
-    - O pour la première
-    - 1 pour la deuxième
-    - 2 pour la troisième    
+    - O pour la première  
+    - 1 pour la deuxième  
+    - 2 pour la troisième      
 -> à chaque fois que l'on coche une case j'appelle ainsi une fonction utilisant deux variables: x et y. Cette fonction permet de décocher en faisant *.deselect()*. Les cibles de cette fonction sont déterminées grâce a x et y qui peuvent avoir une valeur allant de 0 à 2.  
 -> Cette fonction sert par ailleurs à enregistrer la sélection, en modifiant des variables globales qui définissent certaines règles du jeu (carte et vitesse).  
 
