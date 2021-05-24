@@ -104,4 +104,17 @@ Pour cela j'ai:
 
 La sélection de la carte à aussi été une partie difficile à créer. En effet nous avons eu beaucoup de mal (avec Gabriel, nous avons eu beaucoup de mal à le faire, même à deux) à faire en sorte d'ouvrir le fichier et de copier les valeurs du ficher en .txt dans une variable sous forme de liste de liste avec des "int" . En effet au début nous y arrivions mais le format contenu dans la liste de liste (au sein de la variable ' carte ') ne convenait pas au reste des fonctions d'affichage. 
 Je pense que nous avons eu des problèmes pour suivre cette consigne car nous nous y sommes pris trop tard par rapport au reste du programme. En effet au début nous n'avions qu'une seule carte, qui était écrite au sein du programme. 
+
+### HUGO NAZAC
+
+Lors de ce projet, la plus grande difficultée était la motivation. Le fait qu'il y ait eu le coronavirus a fait que j'ai eu un manque total de motivation et le manque de motivation a fait que je ne travaillais pas enormement cependant, le projet a réussi à me donner de la motivation et je travaillais régulièrement dessus et le projet m'amusait ce qui faisait que je passais un bon moment à programmer cela. 
+
+### Affichage du jeu 
+
+j'ai crée la base du snake, les murs, l'herbe, la tête du snake, l'apparition de la pomme et le fait que la pomme aparraisse quelque part au hasard sur la carte. le plus dur ai été de visualer comment je pouvais faire ca et au bout d'un moment de reflection j'ai eu l'idée de faire des listes imbriquée pour la carte. ce que j'ai fait pour crée les différents éléments du jeu c'est que j'ai inséré des chiffres dans la listé par exmple les murs étaient = 1, l'herbe c'était 0 les pommes = 2 et la tete du snake = 3 ce qui fait que dans la liste imbriquée, on a des chiffres qui bouge ou pas et qui donne le snake.
+pour la génération de la pomme, ce que j'ai fait est très simple, ce que j'ai fait c'est que quand la pomme disparaisait, ce qui donne 0 vu que c'est le chiffre qui est égal à l'herbe, la pomme réapparaît dans un endroit aléatoire de la carte, mais pas dans les murs sinon ça ne fonctionnerait pas. 
+
+### mouvements du snake 
+
+j'ai également crée le mouvement du snake. ce n'était pas quelque chose de simple à faire car j'essayais différentes méthodes mais ca ne fonctionnait pas mais après pleins d'essais j'avais réussi a faire quelque chose qui fonctionnait. c'était la partie du programme que j'ai eu le plus de mal à faire. 
  
