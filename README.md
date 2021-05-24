@@ -100,3 +100,8 @@ Pour cela j'ai:
 -> à chaque fois que l'on coche une case j'appelle ainsi une fonction utilisant deux variables: x et y. Cette fonction permet de décocher en faisant .deselect(). Les cibles de cette fonction sont déterminées grâce a x et y qui peuvent avoir une valeur allant de 0 à 2.
 -> Cette fonction sert par ailleurs à enregistrer la sélection, en modifiant des variables globales qui définissent certaines règles du jeu (carte et vitesse).
 
+### La sélection de la carte
+
+La sélection de la carte à aussi été une partie difficile à créer. En effet nous avons eu beaucoup de mal (avec Gabriel, nous avons eu beaucoup de mal à le faire, même à deux) à faire en sorte d'ouvrir le fichier et de copier les valeurs du ficher en .txt dans une variable sous forme de liste de liste avec des "int" . En effet au début nous y arrivions mais le format contenu dans la liste de liste (au sein de la variable ' carte ') ne convenait pas au reste des fonctions d'affichage. 
+Je pense que nous avons eu des problèmes pour suivre cette consigne car nous nous y sommes pris trop tard par rapport au reste du programme. En effet au début nous n'avions qu'une seule carte, qui était écrite au sein du programme. 
+ 
