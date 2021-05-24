@@ -111,7 +111,7 @@ Lors de ce projet, la plus grande difficultée était la motivation. Le fait qu'
 
 ### Affichage du jeu 
 
-j'ai crée la base du snake, les murs, l'herbe, la tête du snake, l'apparition de la pomme et le fait que la pomme aparraisse quelque part au hasard sur la carte. le plus dur ai été de visualer comment je pouvais faire ca et au bout d'un moment de reflection j'ai eu l'idée de faire des listes imbriquée pour la carte. ce que j'ai fait pour crée les différents éléments du jeu c'est que j'ai inséré des chiffres dans la listé par exmple les murs étaient = 1, l'herbe c'était 0 les pommes = 2 et la tete du snake = 3 ce qui fait que dans la liste imbriquée, on a des chiffres qui bouge ou pas et qui donne le snake.
+j'ai crée la base du snake, les murs, l'herbe, la tête du snake, l'apparition de la pomme et le fait que la pomme aparraisse quelque part au hasard sur la carte. le plus dur ai été de visualer comment je pouvais faire ca et au bout d'un moment de reflection j'ai eu l'idée de faire des listes imbriquée pour la carte. ce que j'ai fait pour crée les différents éléments du jeu c'est que j'ai inséré des chiffres dans la listé par exmple les murs étaient = 1, l'herbe c'était 0 les pommes = 2 et la tete du snake = 3 ce qui fait que dans la liste imbriquée, on a des chiffres qui se déplacent ou pas et qui donne le snake.
 pour la génération de la pomme, ce que j'ai fait est très simple, ce que j'ai fait c'est que quand la pomme disparaisait, ce qui donne 0 vu que c'est le chiffre qui est égal à l'herbe, la pomme réapparaît dans un endroit aléatoire de la carte, mais pas dans les murs sinon ça ne fonctionnerait pas. 
 
 ### mouvements du snake 
